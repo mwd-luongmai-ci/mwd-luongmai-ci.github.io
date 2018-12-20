@@ -1,19 +1,29 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
+import { map } from 'rxjs/operators';
+import { JsonConvert } from 'json2typescript';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-    constructor(private http: HttpClient) { }
+    private jsonConvert: JsonConvert;
+    constructor(private http: HttpClient) {
+       this.jsonConvert = new JsonConvert();
+    }
 
     getAll() {
-        return this.http.get<User[]>(`${environment.apiUrl}/users`);
+        return this.http.get<User[]>(`${environment.apiUrl}/users`)
+        .pipe(map(users => {
+            return this.jsonConvert.deserializeArray(users, User);
+        }));
     }
 
     getById(id: number) {
-        return this.http.get(`${environment.apiUrl}/users/${id}`);
+        return this.http.get(`${environment.apiUrl}/users/${id}`)
+        .pipe(map(user => {
+            return this.jsonConvert.deserialize(user, User);
+        }));
     }
 
     register(user: User) {

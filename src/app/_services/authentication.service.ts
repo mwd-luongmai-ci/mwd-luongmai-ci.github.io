@@ -5,13 +5,16 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
+import {JsonConvert, OperationMode, ValueCheckingMode} from 'json2typescript';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
+    public jsonConvert: JsonConvert;
 
     constructor(private http: HttpClient) {
+        this.jsonConvert = new JsonConvert();
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -26,8 +29,9 @@ export class AuthenticationService {
                 // login successful if there's a jwt token in the response
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
+                    const mappedUser = this.jsonConvert.deserialize(user, User);
+                    localStorage.setItem('currentUser', JSON.stringify(mappedUser));
+                    this.currentUserSubject.next(mappedUser);
                 }
 
                 return user;
