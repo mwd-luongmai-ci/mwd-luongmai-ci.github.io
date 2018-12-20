@@ -32,7 +32,6 @@ export class ProfileComponent implements OnInit {
       }
       this.jsonConvert = new JsonConvert;
       this.authenticationService.currentUser.subscribe(x => {
-        console.log(x);
         this.currentUser = x;
       });
     }
@@ -53,12 +52,11 @@ export class ProfileComponent implements OnInit {
   }
 
   private onSubmit() {
-    this.submitted = true;
-
     if (this.updateProfileForm.invalid) {
       return;
     }
 
+    this.submitted = true;
     this.loading = true;
     this.userService.update(this.updateProfileForm.value)
       .subscribe(
@@ -75,7 +73,6 @@ export class ProfileComponent implements OnInit {
 
   private loadProfileData(): void {
     this.loading = true;
-    console.log(this.currentUser);
     this.userService.getById(this.currentUser.id)
     .pipe(first())
     .subscribe(
@@ -84,9 +81,9 @@ export class ProfileComponent implements OnInit {
         {
           id: user.id,
           name: user.name,
-          bio: user.bio == null ? '' : user.bio,
-          company: user.company == null ? '' : user.company,
-          location: user.location == null ? '' : user.location
+          bio: user.bio == null || user.bio == undefined ? '' : user.bio,
+          company: user.company == null || user.company == undefined ? '' : user.company,
+          location: user.location == null || user.location == undefined ? '' : user.location
         });
         this.loading = false;
       },
