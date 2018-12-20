@@ -39,7 +39,7 @@ export class AuthenticationService {
     }
 
     logout() {
-        this.http.post<any>(`${environment.apiUrl}/users/logout`, null);
+        this.http.post<any>(`${environment.apiUrl}/users/logout`, null).subscribe();
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
