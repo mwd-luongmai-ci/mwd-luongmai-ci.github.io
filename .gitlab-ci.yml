@@ -12,4 +12,3 @@ deploy_stage:
   script:
     - npm install
     - ./node_modules/@angular/cli/bin/ng build --progress false --prod --base-href mwd-swatang-stage.surge.sh
-    - ./node_modules/.bin/surge -p dist/ --domain mwd-swatang-stage.surge.sh
