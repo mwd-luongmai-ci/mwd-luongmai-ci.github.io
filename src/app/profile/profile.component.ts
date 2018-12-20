@@ -39,10 +39,10 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.updateProfileForm = this.formBuilder.group({
       id: [''],
-      name: ['', [Validators.required, Validators.maxLength(255), emptyValidator]],
-      bio: ['', [Validators.required, Validators.maxLength(255), emptyValidator]],
-      company: ['', [Validators.required, Validators.maxLength(50), emptyValidator]],
-      location: ['', [Validators.required, Validators.maxLength(100), emptyValidator]]
+      name: ['', [Validators.required, Validators.maxLength(255), emptyValidator()]],
+      bio: ['', [Validators.required, Validators.maxLength(255), emptyValidator()]],
+      company: ['', [Validators.required, Validators.maxLength(50), emptyValidator()]],
+      location: ['', [Validators.required, Validators.maxLength(100), emptyValidator()]]
     });
     this.loadProfileData();
   }
@@ -52,11 +52,10 @@ export class ProfileComponent implements OnInit {
   }
 
   private onSubmit() {
+    this.submitted = true;
     if (this.updateProfileForm.invalid) {
       return;
     }
-
-    this.submitted = true;
     this.loading = true;
     this.userService.update(this.updateProfileForm.value)
       .subscribe(

@@ -1,11 +1,12 @@
 import { ValidatorFn, AbstractControl } from '@angular/forms';
 
-export function emptyValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    const text: string = control.value;
-    if (text && text.trim().length === 0) {
-        return { 'emptyValid' : true };
-    }
-    return null;
+export function emptyValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+        const text: string = control.value;
+        if (text === '' || (text && text.trim().length === 0)) {
+            return {'emptyValid': {value: true}};
+        } else return null;
+    };
 }
 
 export function atLeastOneNonAlphabeticValidator(): ValidatorFn {
