@@ -6,3 +6,4 @@
     lastName: string;
     token: string;
 }
+
