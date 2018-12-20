@@ -10,7 +10,6 @@ deploy_stage:
   only:
     - dev
   script:
-    - rm ./package-lock.json
     - npm install
     - ./node_modules/@angular/cli/bin/ng test --progress false --watch=false
     - ./node_modules/@angular/cli/bin/ng e2e --protractor-config=./e2e/protractor-ci.conf.js
