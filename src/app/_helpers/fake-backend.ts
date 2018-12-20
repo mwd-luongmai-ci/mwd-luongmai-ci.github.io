@@ -28,8 +28,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     const body = {
                         id: user.id,
                         username: user.username,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
+                        name: user.name,
                         token: 'fake-jwt-token'
                     };
 
@@ -70,6 +69,31 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 }
             }
 
+            // update user
+            if (request.url.match(/\/users\/\d+$/) && request.method === 'PUT') {
+                // check for fake auth token in header and return user if valid,
+                // this security is implemented server side in a real application
+                if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+                    // find user by id in users array
+                    const urlParts = request.url.split('/');
+                    const id = parseInt(urlParts[urlParts.length - 1].toString(), 10);
+                    const matchedUsers = users.filter(data => data.id === id);
+                    const user = matchedUsers.length ? matchedUsers[0] : null;
+
+                    const updatedUser = request.body;
+                    if (updatedUser) {
+                        const index = users.indexOf(user);
+                        users[index] = updatedUser;
+                        localStorage.setItem('users', JSON.stringify(users));
+                    }
+
+                    return of(new HttpResponse({ status: 200}));
+                } else {
+                    // return 401 not authorised if token is null or invalid
+                    return throwError({ status: 401, error: { message: 'Unauthorised' } });
+                }
+            }
+
             // register user
             if (request.url.endsWith('/users/register') && request.method === 'POST') {
                 // get new user object from post body
@@ -78,7 +102,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 // validation
                 const duplicateUser = users.filter(data => data.username === newUser.username).length;
                 if (duplicateUser) {
-                    return throwError({ error: { message: 'Username "' + newUser.username + '" is already taken' } });
+                    throwError({ error: { message: 'Username "' + newUser.username + '" is already taken' } });
                 }
 
                 // save new user
