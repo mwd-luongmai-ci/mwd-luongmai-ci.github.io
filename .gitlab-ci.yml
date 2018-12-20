@@ -11,7 +11,4 @@ deploy_stage:
     - dev
   script:
     - npm install
-    - ./node_modules/@angular/cli/bin/ng test --watch=false
-    - ./node_modules/@angular/cli/bin/ng e2e --protractor-config=./e2e/protractor-ci.conf.js
-    - ./node_modules/@angular/cli/bin/ng build --progress false --prod --base-href swatang-stage.surge.sh
-    - ./node_modules/.bin/surge -p dist/ --domain swatang-stage.surge.sh
+    - npm start
