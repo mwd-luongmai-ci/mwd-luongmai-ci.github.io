@@ -5,7 +5,9 @@ export function emptyValidator(): ValidatorFn {
         const text: string = control.value;
         if (text === '' || (text && text.trim().length === 0)) {
             return {'emptyValid': {value: true}};
-        } else return null;
+        } else {
+            return null;
+        }
     };
 }
 
