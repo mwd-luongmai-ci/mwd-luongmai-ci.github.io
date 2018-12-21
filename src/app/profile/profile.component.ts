@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
     return this.updateProfileForm.controls;
   }
 
-  private onSubmit() {
+  onSubmit() {
     this.submitted = true;
     if (this.updateProfileForm.invalid) {
       return;
