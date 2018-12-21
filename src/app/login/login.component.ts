@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            username: ['', Validators.required],
-            password: ['', Validators.required]
+            username: ['', [Validators.required]],
+            password: ['', [Validators.required]]
         });
 
         // get return url from route parameters or default to '/'
@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
 
         // stop here if form is invalid
         if (this.loginForm.invalid) {
+            console.log(this.f.username.errors);
             return;
         }
 
