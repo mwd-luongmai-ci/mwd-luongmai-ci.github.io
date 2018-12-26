@@ -1,8 +1,34 @@
 image: trion/ng-cli-karma
 
+.docker: &docker
+  tags:
+  - docker
+
+before_script:
+  - npm install
+
 cache:
   paths:
     - node_modules/
+
+# Verify it can build.
+build:
+  <<: *docker
+  stage: build
+  artifacts:
+    paths:
+    - dist
+    expire_in: 1 day
+  script:
+    - npm run build
+
+# Verify it passes linting.
+test:lint:
+  <<: *docker
+  stage: test
+  script:
+    - npm run lint
+
 test:
   script:
     - npm install
