@@ -3,12 +3,15 @@ image: trion/ng-cli-karma
 cache:
   paths:
     - node_modules/
+test:
+  script:
+    - npm install
+    - ./node_modules/@angular/cli/bin/ng build --progress false --prod
 
-deploy_stage:
-  stage: deploy
-  environment: Stage
+staging:
+  type: deploy
   only:
     - dev
   script:
     - npm install
-    - ./node_modules/@angular/cli/bin/ng build --progress false --prod --base-href mwd-swatang-stage.surge.sh
+    - ./node_modules/@angular/cli/bin/ng build --progress false --prod
