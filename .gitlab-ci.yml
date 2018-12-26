@@ -1,9 +1,5 @@
 image: trion/ng-cli-karma
 
-.docker: &docker
-  tags:
-  - docker
-
 before_script:
   - npm install
 
