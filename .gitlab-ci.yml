@@ -9,7 +9,6 @@ cache:
 
 # Verify it can build.
 build:
-  <<: *docker
   stage: build
   artifacts:
     paths:
@@ -20,7 +19,6 @@ build:
 
 # Verify it passes linting.
 test:lint:
-  <<: *docker
   stage: test
   script:
     - npm run lint
