@@ -80,9 +80,9 @@ export class ProfileComponent implements OnInit {
         {
           id: user.id,
           name: user.name,
-          bio: user.bio == null || user.bio == undefined ? '' : user.bio,
-          company: user.company == null || user.company == undefined ? '' : user.company,
-          location: user.location == null || user.location == undefined ? '' : user.location
+          bio: user.bio == null || user.bio === undefined ? '' : user.bio,
+          company: user.company == null || user.company === undefined ? '' : user.company,
+          location: user.location == null || user.location === undefined ? '' : user.location
         });
         this.loading = false;
       },

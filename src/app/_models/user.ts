@@ -1,4 +1,4 @@
-﻿import {JsonProperty} from 'json2typescript';
+import {JsonProperty} from 'json2typescript';
 
 export class User {
     @JsonProperty('_id', String, true)
@@ -28,4 +28,3 @@ export class User {
     @JsonProperty('token', String, true)
     token: string = undefined;
 }
-
