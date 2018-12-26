@@ -25,7 +25,6 @@ test:lint:
 
 test:
   script:
-    - npm install
     - ./node_modules/@angular/cli/bin/ng build --progress false --prod
 
 staging:
@@ -33,5 +32,4 @@ staging:
   only:
     - dev
   script:
-    - npm install
     - ./node_modules/@angular/cli/bin/ng build --progress false --prod
