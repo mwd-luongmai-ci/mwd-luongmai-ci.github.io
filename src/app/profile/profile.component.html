@@ -9,7 +9,7 @@
           <input type="text" formControlName="name" class="form-control" [ngClass]="{'is-invalid': submitted && f.name.errors}" />
           <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
             <div *ngIf="f.name.errors.required">The name is required.</div>
-            <div *ngIf="f.name.errors.maxlength || f.name.errors.emptyValid">Maximum length of name is 255 characters.</div>
+            <div *ngIf="f.name.errors.maxlength">Maximum length of name is 50 characters.</div>
           </div>
         </div>
         <div class="form-group">
@@ -17,7 +17,7 @@
           <textarea rows="5" formControlName="bio" class="form-control" [ngClass]="{'is-invalid': submitted && f.bio.errors}"></textarea>
           <div *ngIf="submitted && f.bio.errors" class="invalid-feedback">
             <div *ngIf="f.bio.errors.required">The bio is required.</div>
-            <div *ngIf="f.bio.errors.maxlength || f.bio.errors.emptyValid">Maximum length of bio is 255 characters.</div>
+            <div *ngIf="f.bio.errors.maxlength">Maximum length of bio is 255 characters.</div>
           </div>
         </div>
         <div class="form-group">
@@ -25,15 +25,15 @@
           <input type="text" formControlName="company" class="form-control" [ngClass]="{'is-invalid': submitted && f.company.errors}" />
           <div *ngIf="submitted && f.company.errors" class="invalid-feedback">
             <div *ngIf="f.company.errors.required">The company is required.</div>
-            <div *ngIf="f.company.errors.maxlength || f.company.errors.emptyValid">Maximum length of company is 50 characters.</div>
+            <div *ngIf="f.company.errors.maxlength">Maximum length of company is 50 characters.</div>
           </div>
         </div>
         <div class="form-group">
           <label for="location">Location</label>
           <input type="text" formControlName="location" class="form-control" [ngClass]="{'is-invalid': submitted && f.location.errors}" />
           <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
-            <div *ngIf="f.location.errors.required">The location is required.</div>
-            <div *ngIf="f.location.errors.maxlength || f.location.errors.emptyValid">Maximum length of location is 100 characters.</div>
+            <div *ngIf="f.location.errors.required || f.location.errors.emptyValid">The location is required.</div>
+            <div *ngIf="f.location.errors.maxlength">Maximum length of location is 100 characters.</div>
           </div>
         </div>
         <div class="form-group">
