@@ -16,6 +16,7 @@ import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { ProfileComponent } from './profile';
 import { ChangePasswordComponent } from './change_password';
+import { DeleteAccountComponent } from './delete-account/delete-account.component';
 import { SearchUserComponent } from './search-user/search-user.component';
 
 @NgModule({
@@ -33,6 +34,7 @@ import { SearchUserComponent } from './search-user/search-user.component';
         RegisterComponent,
         ProfileComponent,
         ChangePasswordComponent,
+        DeleteAccountComponent,
         SearchUserComponent
     ],
     providers: [
