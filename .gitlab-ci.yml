@@ -14,16 +14,22 @@ build:
     paths:
     - dist
     expire_in: 1 day
+  only:
+    - merge_requests
   script:
     - npm run build
 
 # Verify it passes linting.
 test:lint:
   stage: test
+  only:
+    - merge_requests
   script:
     - npm run lint
 
 test:
+  only:
+    - merge_requests
   script:
     - ./node_modules/@angular/cli/bin/ng build --progress false --prod
 
