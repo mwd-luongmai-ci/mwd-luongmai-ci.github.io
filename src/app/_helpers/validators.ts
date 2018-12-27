@@ -26,3 +26,15 @@ export function atLeastFourAlphabeticValidator(): ValidatorFn {
       return isValid ? null : {'atLeastFourAlphabetic': {value: control.value}};
   };
 }
+
+export function matchPassword(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+        const password = control.get('newpassword').value;
+        const confirmPassword = control.get('confirmpassword').value;
+        const isValid = password === confirmPassword;
+        if (!isValid) {
+            control.get('confirmpassword').setErrors({matchPassword: true});
+        }
+        return isValid ? null : {'matchPassword': {value: confirmPassword}};
+    };
+}
