@@ -27,4 +27,7 @@ export class User {
 
     @JsonProperty('token', String, true)
     token: string = undefined;
+
+    @JsonProperty('active', Boolean, true)
+    active: Boolean = true;
 }

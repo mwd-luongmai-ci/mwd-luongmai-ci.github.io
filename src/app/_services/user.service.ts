@@ -44,4 +44,8 @@ export class UserService {
             'new_password': newPassword
         });
     }
+
+    deactivate(id: number) {
+        return this.http.put(`${environment.apiUrl}/users/${id}/deactivate`, null);
+    }
 }
