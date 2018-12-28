@@ -39,10 +39,10 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.updateProfileForm = this.formBuilder.group({
       id: [''],
-      name: ['', [Validators.required, Validators.maxLength(255), emptyValidator()]],
-      bio: ['', [Validators.required, Validators.maxLength(255), emptyValidator()]],
-      company: ['', [Validators.required, Validators.maxLength(50), emptyValidator()]],
-      location: ['', [Validators.required, Validators.maxLength(100), emptyValidator()]]
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      bio: ['', [Validators.required, Validators.maxLength(255)]],
+      company: ['', [Validators.required, Validators.maxLength(50)]],
+      location: ['', [Validators.required, Validators.maxLength(100)]]
     });
     this.loadProfileData();
   }
