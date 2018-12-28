@@ -48,4 +48,11 @@ export class UserService {
     deactivate(id: number) {
         return this.http.put(`${environment.apiUrl}/users/${id}/deactivate`, null);
     }
+
+    search(keyword: string, method: string) {
+        return this.http.get<User[]>(`${environment.apiUrl}/users/search/${keyword}/${method}`)
+        .pipe(map(users => {
+            return this.jsonConvert.deserializeArray(users, User);
+        }));
+    }
 }

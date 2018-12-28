@@ -79,10 +79,10 @@ export class ProfileComponent implements OnInit {
         this.updateProfileForm.setValue(
         {
           id: user.id,
-          name: user.name,
-          bio: user.bio == null || user.bio === undefined ? '' : user.bio,
-          company: user.company == null || user.company === undefined ? '' : user.company,
-          location: user.location == null || user.location === undefined ? '' : user.location
+          name: !!user.name ? user.name : '',
+          bio: !!user.bio ? user.bio : '',
+          company: !!user.company ? user.company : '',
+          location: !!user.location ? user.location : ''
         });
         this.loading = false;
       },
