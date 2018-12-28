@@ -5,6 +5,7 @@
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
         <a class="nav-item nav-link" routerLink="/profile">Profile</a>
         <a class="nav-item nav-link" routerLink="/change_password">Change Password</a>
+        <a class="nav-item nav-link" routerLink="/search-user">Search User</a>
     </div>
 </nav>
 
@@ -12,7 +13,7 @@
 <div class="jumbotron">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 offset-sm-3">
+            <div class="col-md-12">
                 <app-alert></app-alert>
                 <router-outlet></router-outlet>
             </div>

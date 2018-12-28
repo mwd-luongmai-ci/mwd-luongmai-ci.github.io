@@ -6,6 +6,7 @@ import { RegisterComponent } from './register';
 import { ChangePasswordComponent } from './change_password';
 import { AuthGuard } from './_guards';
 import { ProfileComponent } from './profile';
+import { SearchUserComponent } from './search-user/search-user.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'change_password', component: ChangePasswordComponent },
+    { path: 'search-user', component: SearchUserComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
