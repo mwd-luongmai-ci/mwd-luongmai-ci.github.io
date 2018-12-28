@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
 import { map } from 'rxjs/operators';
@@ -54,5 +54,14 @@ export class UserService {
         .pipe(map(users => {
             return this.jsonConvert.deserializeArray(users, User);
         }));
+    }
+
+    deleteAccount(id: number, password: string) {
+        const body = { id, password };
+        const options = ({
+            headers: new HttpHeaders({ }),
+            body: body
+        });
+        return this.http.delete(`${environment.apiUrl}/users/deleteAccount`, options);
     }
 }
