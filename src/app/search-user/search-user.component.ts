@@ -32,7 +32,7 @@ export class SearchUserComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private router: Router) {
-      if ( !!this.authenticationService.currentUserValue ) {
+      if ( !!this.authenticationService.currentUserValue === false ) {
         this.router.navigate(['/login']);
       }
       this.jsonConvert = new JsonConvert;
