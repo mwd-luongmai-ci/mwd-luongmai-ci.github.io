@@ -21,9 +21,10 @@
   </div>
   <div *ngIf="isShowResult" class="row search-result">
     <div class="col-md-12 col-xs-12">
-      <p *ngIf="isNotFound" class="not-found">User not found.</p>
+      <p *ngIf="isNotFound" class="not-found">There is not any user matching with the search.</p>
       <div  *ngIf="!isNotFound" class="table-wrapper-scroll-y">
-        <p class="not-found">{{users.length}} users has been found.</p>
+        <p class="not-found" *ngIf="users.length > 1">{{users.length}} users has been found.</p>
+        <p class="not-found" *ngIf="users.length === 1">1 user has been found.</p>
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
