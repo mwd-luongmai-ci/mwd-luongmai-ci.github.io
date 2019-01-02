@@ -8,6 +8,7 @@ import { AuthGuard } from './_guards';
 import { ProfileComponent } from './profile';
 import { SearchUserComponent } from './search-user/search-user.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
+import { ForgotPasswordComponent } from './forgot-password';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     { path: 'change_password', component: ChangePasswordComponent },
     { path: 'profile/delete', component: DeleteAccountComponent },
     { path: 'search-user', component: SearchUserComponent },
+    { path: 'forgot-password', component: ForgotPasswordComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

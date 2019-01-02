@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile';
 import { ChangePasswordComponent } from './change_password';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
 import { SearchUserComponent } from './search-user/search-user.component';
+import { ForgotPasswordComponent } from './forgot-password';
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import { SearchUserComponent } from './search-user/search-user.component';
         ProfileComponent,
         ChangePasswordComponent,
         DeleteAccountComponent,
-        SearchUserComponent
+        SearchUserComponent,
+        ForgotPasswordComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

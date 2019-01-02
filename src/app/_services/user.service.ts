@@ -64,4 +64,8 @@ export class UserService {
         });
         return this.http.delete(`${environment.apiUrl}/users/deleteAccount`, options);
     }
+
+    forgotPassword(emailObject: Object) {
+        return this.http.post(`${environment.apiUrl}/users/forgot_password`, emailObject);
+    }
 }
