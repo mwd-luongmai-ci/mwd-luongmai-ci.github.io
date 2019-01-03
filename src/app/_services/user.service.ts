@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
@@ -66,6 +66,10 @@ export class UserService {
     }
 
     forgotPassword(emailObject: Object) {
-        return this.http.post(`${environment.apiUrl}/users/forgot_password`, emailObject);
+        return this.http.post(`${environment.apiUrl}/users/forgot-password`, emailObject);
+    }
+
+    resetPassword(passwordObject: Object, resetToken: string) {
+      return this.http.post(`${environment.apiUrl}/users/reset-password/${resetToken}`, passwordObject);
     }
 }
