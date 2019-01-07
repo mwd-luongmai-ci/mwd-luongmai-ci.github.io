@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService, AlertService, UserService } from '@app/_services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '@app/_models';
-import { first, tap } from 'rxjs/operators';
-import { debug } from 'util';
-import { Observable } from 'rxjs';
-import { emptyValidator } from '@app/_helpers/validators';
-import { JsonConvert } from 'json2typescript';
 import { Constants } from '@app/_helpers';
 import { SearchMethod } from '@app/_helpers/enum';
+import { User } from '@app/_models';
+import { AlertService, AuthenticationService, UserService } from '@app/_services';
+import { JsonConvert } from 'json2typescript';
 
 @Component({
   selector: 'app-search-user',
@@ -32,11 +28,11 @@ export class SearchUserComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private router: Router) {
-      if ( !!this.authenticationService.currentUserValue === false ) {
-        this.router.navigate(['/login']);
-      }
-      this.jsonConvert = new JsonConvert;
+    if (!!this.authenticationService.currentUserValue === false) {
+      this.router.navigate(['/login']);
     }
+    this.jsonConvert = new JsonConvert;
+  }
 
   ngOnInit() {
     this.searchUserForm = this.formBuilder.group({
@@ -62,21 +58,17 @@ export class SearchUserComponent implements OnInit {
 
     if (keyValue) {
       this.userService.search(this.processSearchInput(keyValue), searchMethod)
-      .subscribe(
-        users => {
-          this.users = users;
-          this.isShowResult = true;
-          if (this.users.length === 0) {
-            this.isNotFound = true;
-          } else {
-            this.isNotFound = false;
-          }
-        },
-        error => {
+        .subscribe(
+          users => {
+            this.users = users;
+            this.isShowResult = true;
+            this.isNotFound = this.users.length === 0;
+          },
+          error => {
             this.alertService.error(error);
             this.submitted = false;
             this.isShowResult = false;
-        });
+          });
     }
   }
 

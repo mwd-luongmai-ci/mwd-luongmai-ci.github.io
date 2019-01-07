@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { atLeastFourAlphabeticValidator, atLeastOneNonAlphabeticValidator } from '@app/_helpers/validators';
+import { AlertService, UserService } from '@app/_services';
 import { first } from 'rxjs/operators';
-import { AlertService, AuthenticationService, UserService } from '@app/_services';
-import { atLeastOneNonAlphabeticValidator, atLeastFourAlphabeticValidator } from '@app/_helpers/validators';
 
 @Component({
   templateUrl: './reset-password.component.html'
@@ -36,24 +36,24 @@ export class ResetPasswordComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.resetPasswordForm.invalid) {
-        return;
+      return;
     }
     this.loading = true;
     const passwordObject = {
       password: this.f.password.value,
-   };
+    };
 
     const token = this.route.snapshot.paramMap.get('token');
     this.userService.resetPassword(passwordObject, token)
-       .pipe(first())
-       .subscribe(
-            data => {
-               this.alertService.success('Your password has been reset.', true);
-               this.router.navigate(['/login']);
-            },
-            error => {
-                 this.alertService.error(error);
-                 this.loading = false;
-            });
-    }
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.alertService.success('Your password has been reset.', true);
+          this.router.navigate(['/login']);
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+        });
+  }
 }
