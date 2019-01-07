@@ -7,7 +7,7 @@ import { first } from 'rxjs/operators';
 import { User } from '@app/_models';
 import { AlertService, AuthenticationService, UserService } from '@app/_services';
 
-@Component({ templateUrl: 'change_password.component.html' })
+@Component({ templateUrl: 'change-password.component.html' })
 export class ChangePasswordComponent implements OnInit {
   form: FormGroup;
   loading = false;
@@ -46,24 +46,25 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    
+
     // stop here if form is invalid
     if (this.form.invalid) {
       return;
 
-    this.loading = true;
-    this.userService.changePassword(this.currentUser.id.toString(),
-      this.form.get('oldpassword').value,
-      this.form.get('newpassword').value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.alertService.success('Password updated successfully.', true);
-          this.router.navigate(['/']);
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        });
+      this.loading = true;
+      this.userService.changePassword(this.currentUser.id.toString(),
+        this.form.get('oldpassword').value,
+        this.form.get('newpassword').value)
+        .pipe(first())
+        .subscribe(
+          data => {
+            this.alertService.success('Password updated successfully.', true);
+            this.router.navigate(['/']);
+          },
+          error => {
+            this.alertService.error(error);
+            this.loading = false;
+          });
+    }
   }
 }

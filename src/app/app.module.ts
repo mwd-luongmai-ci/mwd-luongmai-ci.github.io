@@ -15,7 +15,7 @@ import { CompanyComponent } from './_control-components/company/company.componen
 import { LocationComponent } from './_control-components/location/location.component';
 import { NameComponent } from './_control-components/name/name.component';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
-import { ChangePasswordComponent } from './change_password';
+import { ChangePasswordComponent } from './change-password';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
 import { ForgotPasswordComponent } from './forgot-password';
 import { HomeComponent } from './home';
