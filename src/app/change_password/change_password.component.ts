@@ -46,11 +46,10 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
+    
     // stop here if form is invalid
     if (this.form.invalid) {
       return;
-    }
 
     this.loading = true;
     this.userService.changePassword(this.currentUser.id.toString(),
