@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { User } from '@app/_models';
-import { Subscription } from 'rxjs';
-import { AuthenticationService, UserService, AlertService } from '@app/_services';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from '@app/_models';
+import { AlertService, AuthenticationService, UserService } from '@app/_services';
+import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -20,16 +20,16 @@ export class DeleteAccountComponent implements OnInit, OnDestroy {
   passwordForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private authenticateService: AuthenticationService,
-              private userService: UserService,
-              private alertService: AlertService,
-              private router: Router
-    ) {
-        // Navigate to login if user has not logged in
-        if (!this.authenticateService.currentUserValue) {
-          this.router.navigate(['/login']);
-        }
-      }
+    private authenticateService: AuthenticationService,
+    private userService: UserService,
+    private alertService: AlertService,
+    private router: Router
+  ) {
+    // Navigate to login if user has not logged in
+    if (!this.authenticateService.currentUserValue) {
+      this.router.navigate(['/login']);
+    }
+  }
 
   ngOnInit() {
     this.currentUserSubscription = this.authenticateService.currentUser.subscribe(user => {
@@ -57,19 +57,19 @@ export class DeleteAccountComponent implements OnInit, OnDestroy {
     this.loading = true;
 
     this.userService.deleteAccount(this.currentUser.id, this.f.password.value)
-        .pipe(first())
-        .subscribe(
-          _ => {
-            this.deleted = true;
-            // this.authenticateService.logout();
-            this.authenticateService.invalidate();
-            this.router.navigate(['/login']);
-            this.alertService.success('Your account has been deleted.', true);
-          },
-          error => {
-            this.alertService.error(error);
-            this.loading = false;
-          }
-        );
+      .pipe(first())
+      .subscribe(
+        _ => {
+          this.deleted = true;
+          // this.authenticateService.logout();
+          this.authenticateService.invalidate();
+          this.router.navigate(['/login']);
+          this.alertService.success('Your account has been deleted.', true);
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+        }
+      );
   }
 }
