@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '@app/_models';
 import { AlertService, AuthenticationService, UserService } from '@app/_services';
@@ -35,11 +35,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.updateProfileForm = this.formBuilder.group({
-      id: [''],
-      name: ['', [Validators.required, Validators.maxLength(50)]],
-      bio: ['', [Validators.required, Validators.maxLength(255)]],
-      company: ['', [Validators.required, Validators.maxLength(50)]],
-      location: ['', [Validators.required, Validators.maxLength(100)]]
+      id: ['']
     });
     this.loadProfileData();
   }
