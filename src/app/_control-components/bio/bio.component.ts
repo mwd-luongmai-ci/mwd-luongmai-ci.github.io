@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { BaseControlComponent } from '../base-control.component';
+import { BaseFormControlComponent } from '../base-form-control.component';
 
 @Component({
   selector: 'app-bio-input-form-control',
   templateUrl: './bio.component.html'
 })
-export class BioComponent extends BaseControlComponent{
+export class BioComponent extends BaseFormControlComponent{
 
   @Input()
   rows: number = 1;

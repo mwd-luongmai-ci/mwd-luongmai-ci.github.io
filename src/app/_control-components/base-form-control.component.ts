@@ -1,7 +1,7 @@
 import { Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
-export abstract class BaseControlComponent implements OnInit {
+export abstract class BaseFormControlComponent implements OnInit {
 
   formControl: FormControl;
   nameControl: string;

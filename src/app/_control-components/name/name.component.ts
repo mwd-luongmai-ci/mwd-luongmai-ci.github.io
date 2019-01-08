@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators} from '@angular/forms';
-import { BaseControlComponent } from '../base-control.component';
+import { BaseFormControlComponent } from '../base-form-control.component';
 
 @Component({
   selector: 'app-name-input-form-control',
   templateUrl: './name.component.html'
 })
-export class NameComponent extends BaseControlComponent {
+export class NameComponent extends BaseFormControlComponent {
 
   constructor(formBuilder: FormBuilder) {
     super(formBuilder);
