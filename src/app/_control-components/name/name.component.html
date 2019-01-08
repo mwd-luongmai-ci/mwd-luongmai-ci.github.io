@@ -1,0 +1,8 @@
+<div class="form-group" [formGroup]="parentGroup">
+  <label for="{{nameControl}}">{{labelControl}}</label>
+  <input type="text" formControlName="{{nameControl}}" class="form-control" [ngClass]="{'is-invalid': submitted && formControl.errors}" />
+  <div *ngIf="submitted && formControl.errors" class="invalid-feedback">
+    <div *ngIf="formControl.errors.required">The name is required.</div>
+    <div *ngIf="formControl.errors.maxlength">Maximum length of name is 50 characters.</div>
+  </div>
+</div>
