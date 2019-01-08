@@ -1,13 +1,13 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './_guards';
+import { ChangePasswordComponent } from './change-password';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
 import { ForgotPasswordComponent } from './forgot-password';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { ProfileComponent } from './profile';
 import { RegisterComponent } from './register';
-import { ChangePasswordComponent } from './change-password';
 import { ResetPasswordComponent } from './reset-password';
 import { SearchUserComponent } from './search-user/search-user.component';
 
