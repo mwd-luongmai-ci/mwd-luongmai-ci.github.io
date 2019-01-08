@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { atLeastFourAlphabeticValidator, atLeastOneNonAlphabeticValidator, matchPassword } from '@app/_helpers/validators';
 import { first } from 'rxjs/operators';
 
+import { FieldSpecifications } from '@app/_helpers/field-specification'
+import { FieldValidators } from '@app/_helpers/validators';
 import { User } from '@app/_models';
 import { AlertService, AuthenticationService, UserService } from '@app/_services';
 import { Subscription } from 'rxjs';
@@ -32,14 +33,11 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      oldpassword: ['', [Validators.required, Validators.minLength(8)]],
-      newpassword: ['', [Validators.required,
-      Validators.minLength(8),
-      atLeastOneNonAlphabeticValidator(),
-      atLeastFourAlphabeticValidator()]],
-      confirmpassword: ['', [Validators.required, Validators.minLength(8)]]
+      oldpassword: ['', FieldSpecifications.SimplePassword],
+      newpassword: ['', FieldSpecifications.Password],
+      confirmpassword: ['', FieldSpecifications.SimplePassword]
     }, {
-        validators: matchPassword()
+        validators: FieldValidators.matchPassword
       });
   }
 
@@ -56,21 +54,21 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     // stop here if form is invalid
     if (this.form.invalid) {
       return;
-
-      this.loading = true;
-      this.userService.changePassword(this.currentUser.id.toString(),
-        this.form.get('oldpassword').value,
-        this.form.get('newpassword').value)
-        .pipe(first())
-        .subscribe(
-          data => {
-            this.alertService.success('Password updated successfully.', true);
-            this.router.navigate(['/']);
-          },
-          error => {
-            this.alertService.error(error);
-            this.loading = false;
-          });
     }
+
+    this.loading = true;
+    this.userService.changePassword(this.currentUser.id.toString(),
+      this.form.get('oldpassword').value,
+      this.form.get('newpassword').value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.alertService.success('Password updated successfully.', true);
+          this.router.navigate(['/']);
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+        });
   }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { atLeastFourAlphabeticValidator, atLeastOneNonAlphabeticValidator } from '@app/_helpers/validators';
+import { FieldSpecifications } from '@app/_helpers/field-specification';
 import { AlertService, AuthenticationService, UserService } from '@app/_services';
 
 @Component({ templateUrl: 'register.component.html' })
@@ -27,11 +27,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      username: ['', [Validators.required, Validators.minLength(6), Validators.pattern('^[a-zA-Z0-9]+$')]],
-      email: ['', [Validators.required, Validators.pattern('^[^@]+@[^@]+$')]],
-      // tslint:disable-next-line:max-line-length
-      password: ['', [Validators.required, Validators.minLength(8), atLeastOneNonAlphabeticValidator(), atLeastFourAlphabeticValidator()]]
+      name: ['', FieldSpecifications.Name],
+      username: ['', FieldSpecifications.Username],
+      email: ['', FieldSpecifications.EmailAddress],
+      password: ['', FieldSpecifications.Password]
     });
   }
 

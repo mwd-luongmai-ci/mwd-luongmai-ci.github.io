@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { atLeastFourAlphabeticValidator, atLeastOneNonAlphabeticValidator } from '@app/_helpers/validators';
+import { FieldSpecifications } from '@app/_helpers/field-specification';
 import { AlertService, UserService } from '@app/_services';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
@@ -26,7 +26,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.resetPasswordForm = this.formBuilder.group({
-      password: ['', [Validators.required, Validators.minLength(8), atLeastOneNonAlphabeticValidator(), atLeastFourAlphabeticValidator()]]
+      password: ['', FieldSpecifications.Password]
     });
   }
 
@@ -57,9 +57,9 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
                  this.alertService.error(error);
                  this.loading = false;
             });
-    }
+  }
 
-    ngOnDestroy(): void {
-      this.subscription.unsubscribe();
-    }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }
