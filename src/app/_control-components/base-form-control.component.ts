@@ -1,11 +1,7 @@
-import { Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
-export abstract class BaseFormControlComponent implements OnInit {
-
-  formControl: FormControl;
-  nameControl: string;
-  labelControl: string;
+export abstract class BaseFormControlComponent {
 
   @Input()
   submitted = false;
@@ -13,31 +9,6 @@ export abstract class BaseFormControlComponent implements OnInit {
   @Input()
   parentGroup: FormGroup;
 
-  constructor( public formBuilder: FormBuilder ) {}
-
-  ngOnInit(): void {
-    this.addControl();
-  }
-
-  set control(formControl: FormControl) {
-    this.formControl = formControl;
-  }
-
-  set name(name: string) {
-    this.nameControl = name;
-  }
-
-  set label(label: string) {
-    this.labelControl = label;
-  }
-
-  get controlGroup() {
-    return this.parentGroup.controls;
-  }
-
-  addControl() {
-    if (!!this.nameControl && !!this.formControl) {
-      this.parentGroup.addControl(this.nameControl, this.formControl);
-    }
+  constructor(public name : string, public label : string) {
   }
 }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { BaseFormControlComponent } from '../base-form-control.component';
 
 @Component({
@@ -8,11 +7,7 @@ import { BaseFormControlComponent } from '../base-form-control.component';
 })
 export class LocationComponent extends BaseFormControlComponent {
 
-  constructor(formBuilder: FormBuilder) {
-    super(formBuilder);
-
-    this.name = 'location';
-    this.label = 'Location';
-    this.control = new FormControl('', [Validators.required, Validators.maxLength(100)]);
+  constructor() {
+    super('location', 'Location');
   }
 }

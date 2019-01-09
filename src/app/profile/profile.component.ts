@@ -1,22 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '@app/_models';
 import { AlertService, AuthenticationService, UserService } from '@app/_services';
-import { JsonConvert } from 'json2typescript';
-import { first } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   currentUser: User;
   updateProfileForm: FormGroup;
   loading = false;
   submitted = false;
-  jsonConvert: JsonConvert;
+  currentUserSubscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,17 +26,20 @@ export class ProfileComponent implements OnInit {
     if (!this.authenticationService.currentUserValue) {
       this.router.navigate(['/login']);
     }
-    this.jsonConvert = new JsonConvert;
-    this.authenticationService.currentUser.subscribe(x => {
+    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(x => {
       this.currentUser = x;
     });
   }
 
   ngOnInit() {
     this.updateProfileForm = this.formBuilder.group({
-      id: ['']
+      id: [''],
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      bio: ['', [Validators.required, Validators.maxLength(255)]],
+      company: ['', [Validators.required, Validators.maxLength(50)]],
+      location: ['', [Validators.required, Validators.maxLength(100)]]
     });
-    this.loadProfileData();
+    this.loadProfileData(this.currentUser);
   }
 
   get f() {
@@ -52,7 +54,7 @@ export class ProfileComponent implements OnInit {
     this.loading = true;
     this.userService.update(this.updateProfileForm.value)
       .subscribe(
-        data => {
+        _ => {
           this.alertService.success('Profile updated successfully.', true);
           this.router.navigate(['/']);
         },
@@ -63,26 +65,18 @@ export class ProfileComponent implements OnInit {
         });
   }
 
-  private loadProfileData(): void {
-    this.loading = true;
-    this.userService.getById(this.currentUser.id)
-      .pipe(first())
-      .subscribe(
-        user => {
-          this.updateProfileForm.setValue(
-            {
-              id: user.id,
-              name: !!user.name ? user.name : '',
-              bio: !!user.bio ? user.bio : '',
-              company: !!user.company ? user.company : '',
-              location: !!user.location ? user.location : ''
-            });
-          this.loading = false;
-        },
-        error => {
-          this.alertService.error(error);
-          this.submitted = false;
-          this.loading = false;
-        });
+  private loadProfileData(user : User): void {
+    this.updateProfileForm.setValue(
+      {
+        id: user.id,
+        name: !!user.name ? user.name : '',
+        bio: !!user.bio ? user.bio : '',
+        company: !!user.company ? user.company : '',
+        location: !!user.location ? user.location : ''
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.currentUserSubscription.unsubscribe();
   }
 }

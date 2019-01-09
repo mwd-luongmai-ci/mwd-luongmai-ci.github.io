@@ -3,14 +3,16 @@ import { Injectable } from '@angular/core';
 import { User } from '@app/_models';
 import { environment } from '@environments/environment';
 import { JsonConvert } from 'json2typescript';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private jsonConvert: JsonConvert;
-  constructor(private http: HttpClient) {
-    this.jsonConvert = new JsonConvert();
-  }
+    private jsonConvert: JsonConvert;
+    constructor(private http: HttpClient,
+                private authenticationService: AuthenticationService) {
+       this.jsonConvert = new JsonConvert();
+    }
 
   getAll() {
     return this.http.get<User[]>(`${environment.apiUrl}/users`)
@@ -30,9 +32,14 @@ export class UserService {
     return this.http.post(`${environment.apiUrl}/users/register`, user);
   }
 
-  update(user: User) {
-    return this.http.put(`${environment.apiUrl}/users/${user.id}`, user);
-  }
+    update(user: User) {
+        return this.http.put(`${environment.apiUrl}/users/${user.id}`, user)
+            .pipe(
+                tap(_ => {
+                    this.updateUserLocal(user);
+                })
+            );
+    }
 
   delete(id: number) {
     return this.http.delete(`${environment.apiUrl}/users/${id}`);
@@ -71,5 +78,22 @@ export class UserService {
 
   resetPassword(passwordObject: { password: string, resetToken: string }) {
     return this.http.post(`${environment.apiUrl}/users/reset-password`, passwordObject);
+  }
+
+  updateUserLocal(user: User) {
+    const currentUser = this.authenticationService.currentUserValue as User;
+    if (!!currentUser && !!user) {
+        const mappedUser = this.jsonConvert.deserialize(user, User);
+        currentUser.name = !!mappedUser.name ? mappedUser.name : currentUser.name ;
+        currentUser.bio = !!mappedUser.bio ? mappedUser.bio : currentUser.bio;
+        currentUser.company = !!mappedUser.company ? mappedUser.company : currentUser.company;
+        currentUser.location = !!mappedUser.location ? mappedUser.location : currentUser.location;
+        currentUser.email = !!mappedUser.email ? mappedUser.email : currentUser.email;
+        currentUser.username = !!mappedUser.username ? mappedUser.username : currentUser.username;
+        currentUser.active = !!mappedUser.active ? mappedUser.active : currentUser.active;
+
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        this.authenticationService.refreshLocalData();
+    }
   }
 }
