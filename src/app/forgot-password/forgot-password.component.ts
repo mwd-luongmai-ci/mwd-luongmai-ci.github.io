@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService, UserService } from '@app/_services';
+import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
+
 
 @Component({
   templateUrl: './forgot-password.component.html',
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent implements OnInit, OnDestroy {
 
+  private subscription: Subscription;
   forgotPasswordForm: FormGroup;
   loading = false;
   submitted = false;
@@ -42,10 +45,9 @@ export class ForgotPasswordComponent implements OnInit {
       url: window.location.href
     };
 
-    this.userService.forgotPassword(emailObject)
+    this.subscription = this.userService.forgotPassword(emailObject)
       .pipe(first())
-      .subscribe(
-        data => {
+      .subscribe(() => {
           this.alertService.success(
             'We have sent you an email with a link to reset your password. Please check your mailbox.', true);
           this.loading = false;
@@ -54,5 +56,9 @@ export class ForgotPasswordComponent implements OnInit {
           this.alertService.error(error);
           this.loading = false;
         });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

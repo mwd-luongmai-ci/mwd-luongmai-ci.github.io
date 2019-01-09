@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { atLeastFourAlphabeticValidator, atLeastOneNonAlphabeticValidator } from '@app/_helpers/validators';
 import { AlertService, UserService } from '@app/_services';
+import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 @Component({
   templateUrl: './reset-password.component.html'
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit, OnDestroy {
 
+  private subscription: Subscription;
   resetPasswordForm: FormGroup;
   loading = false;
   submitted = false;
@@ -39,21 +41,25 @@ export class ResetPasswordComponent implements OnInit {
       return;
     }
     this.loading = true;
+    const token = this.route.snapshot.paramMap.get('token');
     const passwordObject = {
       password: this.f.password.value,
+      resetToken: token,
     };
 
-    const token = this.route.snapshot.paramMap.get('token');
-    this.userService.resetPassword(passwordObject, token)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.alertService.success('Your password has been reset.', true);
-          this.router.navigate(['/login']);
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        });
-  }
+    this.subscription = this.userService.resetPassword(passwordObject)
+       .pipe(first())
+       .subscribe(() => {
+               this.alertService.success('Your password has been reset.', true);
+               this.router.navigate(['/login']);
+            },
+            error => {
+                 this.alertService.error(error);
+                 this.loading = false;
+            });
+    }
+
+    ngOnDestroy(): void {
+      this.subscription.unsubscribe();
+    }
 }

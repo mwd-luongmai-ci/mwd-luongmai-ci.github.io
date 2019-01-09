@@ -65,11 +65,11 @@ export class UserService {
     return this.http.delete(`${environment.apiUrl}/users/deleteAccount`, options);
   }
 
-  forgotPassword(emailObject: object) {
+  forgotPassword(emailObject: { email: string, url: string }) {
     return this.http.post(`${environment.apiUrl}/users/forgot-password`, emailObject);
   }
 
-  resetPassword(passwordObject: object, resetToken: string) {
-    return this.http.post(`${environment.apiUrl}/users/reset-password/${resetToken}`, passwordObject);
+  resetPassword(passwordObject: { password: string, resetToken: string }) {
+    return this.http.post(`${environment.apiUrl}/users/reset-password`, passwordObject);
   }
 }
