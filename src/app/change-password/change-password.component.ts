@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { atLeastFourAlphabeticValidator, atLeastOneNonAlphabeticValidator, matchPassword } from '@app/_helpers/validators';
@@ -9,7 +9,7 @@ import { AlertService, AuthenticationService, UserService } from '@app/_services
 import { Subscription } from 'rxjs';
 
 @Component({ templateUrl: 'change-password.component.html' })
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordComponent implements OnInit, OnDestroy {
   form: FormGroup;
   loading = false;
   submitted = false;
