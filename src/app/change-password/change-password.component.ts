@@ -6,6 +6,7 @@ import { first } from 'rxjs/operators';
 
 import { User } from '@app/_models';
 import { AlertService, AuthenticationService, UserService } from '@app/_services';
+import { Subscription } from 'rxjs';
 
 @Component({ templateUrl: 'change-password.component.html' })
 export class ChangePasswordComponent implements OnInit {
@@ -13,6 +14,7 @@ export class ChangePasswordComponent implements OnInit {
   loading = false;
   submitted = false;
   currentUser: User;
+  currentUserSubscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,7 +27,7 @@ export class ChangePasswordComponent implements OnInit {
     if (!this.authenticationService.currentUserValue) {
       this.router.navigate(['/login']);
     }
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit() {
@@ -39,6 +41,10 @@ export class ChangePasswordComponent implements OnInit {
     }, {
         validators: matchPassword()
       });
+  }
+
+  ngOnDestroy() {
+    this.currentUserSubscription.unsubscribe();
   }
 
   // convenience getter for easy access to form fields
