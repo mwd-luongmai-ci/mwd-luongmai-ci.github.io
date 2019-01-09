@@ -25,6 +25,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         this.authenticationService.invalidate();
         this.alertService.error(err.error.message, true);
         this.router.navigate(['/login']);
+      } else if (err.status === 0) {
+        return throwError("We can not process your request right now. Please try again later.");
       }
       const error = err.error.message || err.statusText;
       return throwError(error);
