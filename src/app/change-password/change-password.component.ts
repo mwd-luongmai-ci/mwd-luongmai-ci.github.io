@@ -24,10 +24,6 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private alertService: AlertService
   ) {
-    // redirect to login if not logged in
-    if (!this.authenticationService.currentUserValue) {
-      this.router.navigate(['/login']);
-    }
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 

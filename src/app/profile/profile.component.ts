@@ -24,9 +24,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private router: Router) {
-    if (!this.authenticationService.currentUserValue) {
-      this.router.navigate(['/login']);
-    }
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(x => {
       this.currentUser = x;
     });

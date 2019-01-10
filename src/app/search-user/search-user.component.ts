@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Constants } from '@app/_helpers';
 import { SearchMethod } from '@app/_helpers/enum';
 import { User } from '@app/_models';
-import { AlertService, AuthenticationService, UserService } from '@app/_services';
+import { AlertService, UserService } from '@app/_services';
 import { JsonConvert } from 'json2typescript';
 
 @Component({
@@ -25,12 +24,7 @@ export class SearchUserComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private alertService: AlertService,
-    private authenticationService: AuthenticationService,
-    private userService: UserService,
-    private router: Router) {
-    if (!!this.authenticationService.currentUserValue === false) {
-      this.router.navigate(['/login']);
-    }
+    private userService: UserService) {
     this.jsonConvert = new JsonConvert;
   }
 

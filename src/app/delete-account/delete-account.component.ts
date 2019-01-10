@@ -24,12 +24,7 @@ export class DeleteAccountComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private alertService: AlertService,
     private router: Router
-  ) {
-    // Navigate to login if user has not logged in
-    if (!this.authenticateService.currentUserValue) {
-      this.router.navigate(['/login']);
-    }
-  }
+  ) { }
 
   ngOnInit() {
     this.currentUserSubscription = this.authenticateService.currentUser.subscribe(user => {
