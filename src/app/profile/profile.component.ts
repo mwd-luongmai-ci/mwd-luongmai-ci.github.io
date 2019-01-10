@@ -32,10 +32,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.updateProfileForm = this.formBuilder.group({
       id: [''],
-      name: ['', [Validators.required, Validators.maxLength(50)]],
-      bio: ['', [Validators.required, Validators.maxLength(255)]],
-      company: ['', [Validators.required, Validators.maxLength(50)]],
-      location: ['', [Validators.required, Validators.maxLength(100)]]
+      name: ['', FieldSpecifications.Name],
+      bio: ['', FieldSpecifications.Bio],
+      company: ['', FieldSpecifications.Company],
+      location: ['', FieldSpecifications.Location]
     });
     this.loadProfileData(this.currentUser);
   }
