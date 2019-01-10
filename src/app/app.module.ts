@@ -12,9 +12,11 @@ import { routing } from './app.routing';
 import { AlertComponent } from './_components';
 import { BioComponent } from './_control-components/bio/bio.component';
 import { CompanyComponent } from './_control-components/company/company.component';
+import { EmailComponent } from './_control-components/email/email.component';
 import { LoadingComponent } from './_control-components/loading/loading.component';
 import { LocationComponent } from './_control-components/location/location.component';
 import { NameComponent } from './_control-components/name/name.component';
+import { PasswordComponent } from "./_control-components/password/password.component";
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
 import { ChangePasswordComponent } from './change-password';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
@@ -49,7 +51,9 @@ import { SearchUserComponent } from './search-user/search-user.component';
     NameComponent,
     BioComponent,
     LocationComponent,
-    CompanyComponent
+    CompanyComponent,
+    EmailComponent,
+    PasswordComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
