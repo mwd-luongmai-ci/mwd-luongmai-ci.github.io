@@ -12,6 +12,7 @@ import { routing } from './app.routing';
 import { AlertComponent } from './_components';
 import { BioComponent } from './_control-components/bio/bio.component';
 import { CompanyComponent } from './_control-components/company/company.component';
+import { LoadingComponent } from './_control-components/loading/loading.component';
 import { LocationComponent } from './_control-components/location/location.component';
 import { NameComponent } from './_control-components/name/name.component';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
@@ -44,6 +45,7 @@ import { SearchUserComponent } from './search-user/search-user.component';
     SearchUserComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    LoadingComponent,
     NameComponent,
     BioComponent,
     LocationComponent,
