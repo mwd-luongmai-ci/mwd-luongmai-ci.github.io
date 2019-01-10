@@ -84,13 +84,13 @@ export class UserService {
     const currentUser = this.authenticationService.currentUserValue as User;
     if (!!currentUser && !!user) {
         const mappedUser = this.jsonConvert.deserialize(user, User);
-        currentUser.name = !!mappedUser.name ? mappedUser.name : currentUser.name ;
-        currentUser.bio = !!mappedUser.bio ? mappedUser.bio : currentUser.bio;
-        currentUser.company = !!mappedUser.company ? mappedUser.company : currentUser.company;
-        currentUser.location = !!mappedUser.location ? mappedUser.location : currentUser.location;
-        currentUser.email = !!mappedUser.email ? mappedUser.email : currentUser.email;
-        currentUser.username = !!mappedUser.username ? mappedUser.username : currentUser.username;
-        currentUser.active = !!mappedUser.active ? mappedUser.active : currentUser.active;
+        currentUser.name = mappedUser.name !== undefined && mappedUser.name !== null ? mappedUser.name : currentUser.name ;
+        currentUser.bio = mappedUser.bio !== undefined && mappedUser.bio !== null ? mappedUser.bio : currentUser.bio;
+        currentUser.company = mappedUser.company !== undefined && mappedUser.company !== null ? mappedUser.company : currentUser.company;
+        currentUser.location = mappedUser.location !== undefined && mappedUser.location !== null ? mappedUser.location : currentUser.location;
+        currentUser.email = mappedUser.email !== undefined && mappedUser.email !== null ? mappedUser.email : currentUser.email;
+        currentUser.username = mappedUser.username !== undefined && mappedUser.username !== null ? mappedUser.username : currentUser.username;
+        currentUser.active = mappedUser.active !== undefined && mappedUser.active !== null ? mappedUser.active : currentUser.active;
 
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         this.authenticationService.refreshLocalData();
