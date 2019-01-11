@@ -8,11 +8,7 @@ import { BaseFormControlComponent } from '../base-form-control.component';
 })
 export class OldPasswordComponent extends BaseFormControlComponent {
 
-  constructor(formBuilder: FormBuilder) {
-    super(formBuilder);
-
-    this.name = 'oldpassword';
-    this.label = 'Old password';
-    this.control = new FormControl('', [Validators.required]);
-  }
+    constructor() {
+        super('name', 'Name');
+    }
 }
