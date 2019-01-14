@@ -9,6 +9,6 @@ import { BaseFormControlComponent } from '../base-form-control.component';
 export class OldPasswordComponent extends BaseFormControlComponent {
 
     constructor() {
-        super('name', 'Name');
+        super('oldpassword', 'Oldpassword');
     }
 }
