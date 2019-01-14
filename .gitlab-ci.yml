@@ -36,6 +36,8 @@ test:
 staging:
   type: deploy
   only:
-    - dev
+    - /^version-.*$/
+    - improvement
   script:
     - ./node_modules/@angular/cli/bin/ng build --progress false --prod
+    - ./node_modules/.bin/surge -p dist/swatang --domain swatangv1-stage.surge.sh
