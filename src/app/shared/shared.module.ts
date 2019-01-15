@@ -9,6 +9,7 @@ import { LocationComponent } from './components/location/location.component';
 import { NameComponent } from './components/name/name.component';
 import { PasswordComponent } from './components/password/password.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OldPasswordComponent } from '@app/shared/components/old-password/old-password.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LocationComponent,
     NameComponent,
     PasswordComponent,
+    OldPasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LocationComponent,
     NameComponent,
     PasswordComponent,
+    OldPasswordComponent,
   ]
 })
 export class SharedModule { }
