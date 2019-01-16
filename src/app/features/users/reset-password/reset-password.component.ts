@@ -1,17 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FieldSpecifications } from '@shared/specs';
 import { AlertService, UserService } from '@core/services';
-import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 @Component({
   templateUrl: './reset-password.component.html'
 })
-export class ResetPasswordComponent implements OnInit, OnDestroy {
+export class ResetPasswordComponent implements OnInit {
 
-  private subscription: Subscription;
   resetPasswordForm: FormGroup;
   loading = false;
   submitted = false;
@@ -47,7 +45,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
       resetToken: token,
     };
 
-    this.subscription = this.userService.resetPassword(passwordObject)
+    this.userService.resetPassword(passwordObject)
        .pipe(first())
        .subscribe(() => {
                this.alertService.success('Your password has been reset.', true);
@@ -57,9 +55,5 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
                  this.alertService.error(error);
                  this.loading = false;
             });
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }
