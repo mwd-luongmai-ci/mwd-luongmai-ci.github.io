@@ -4,19 +4,15 @@ import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ProfileComponent } from './profile.component';
-import { NameComponent } from '@app/shared/components/name/name.component';
-import { BioComponent } from '@app/shared/components/bio/bio.component';
-import { CompanyComponent } from '@app/shared/components/company/company.component';
-import { LocationComponent } from '@app/shared/components/location/location.component';
-import { LoginComponent } from '@app/features/authentication/login/login.component';
-import { LoadingComponent } from '@app/shared/components/loading/loading.component';
 import { AuthenticationService, UserService, AlertService } from '@app/core';
 import { TestAuthenticationService } from '@app/core/services/testing/test-authentication.service';
 import { TestUserService } from '@app/core/services/testing/test-user.service';
 import { getTestUsers } from '@app/core/models/testing/test-users';
 import { throwError } from 'rxjs';
 import { generateRandomString } from '@app/shared/testing/test-util';
+import { ProfileComponent } from './profile.component';
+import { NameComponent, BioComponent, CompanyComponent, LocationComponent, LoadingComponent } from '@app/shared/components';
+import { LoginComponent } from '@app/features/authentication/login/login.component';
 
 
 let component : ProfileComponent;
