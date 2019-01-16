@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FieldSpecifications } from '@shared/specs';
-import { User } from '@core/models';
-import { AlertService, AuthenticationService, UserService } from '@core/services';
 import { Subscription } from 'rxjs';
+import { User, AlertService, AuthenticationService, UserService } from '@app/core';
+import { FieldSpecifications } from '@app/shared';
 
 @Component({
   selector: 'app-profile',
@@ -46,14 +45,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.submitted = true;
+    this.loading = true;
+
     if (this.updateProfileForm.invalid) {
+      this.loading = false;
       return;
     }
-    this.loading = true;
     this.userService.update(this.updateProfileForm.value)
       .subscribe(
         _ => {
           this.alertService.success('Profile updated successfully.', true);
+          this.submitted = false;
+          this.loading = false;
           this.router.navigate(['/']);
         },
         error => {
@@ -64,17 +67,21 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   private loadProfileData(user : User): void {
-    this.updateProfileForm.setValue(
-      {
-        id: user.id,
-        name: !!user.name ? user.name : '',
-        bio: !!user.bio ? user.bio : '',
-        company: !!user.company ? user.company : '',
-        location: !!user.location ? user.location : ''
-      });
+    if(user){
+      this.updateProfileForm.setValue(
+        {
+          id: !!user.id ? user.id : '',
+          name: !!user.name ? user.name : '',
+          bio: !!user.bio ? user.bio : '',
+          company: !!user.company ? user.company : '',
+          location: !!user.location ? user.location : ''
+        });
+    }
   }
 
   ngOnDestroy(): void {
-    this.currentUserSubscription.unsubscribe();
+    if(this.currentUserSubscription){
+      this.currentUserSubscription.unsubscribe();
+    }
   }
 }
