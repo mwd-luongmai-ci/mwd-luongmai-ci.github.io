@@ -13,5 +13,8 @@ export class TestUserService extends UserService {
   update(user: User) : Observable<User> {
     return asyncData(user);
   }
+  forgotPassword(emailObject: { email: string, url: string }) : Observable<string> {
+    return asyncData('');
+  }
 
 }
