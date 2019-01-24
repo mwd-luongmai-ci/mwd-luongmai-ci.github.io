@@ -1,3 +1,4 @@
+import { asyncData } from '@app/shared/testing';
 import { AuthenticationService } from '..';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -18,5 +19,8 @@ export class TestAuthenticationService extends AuthenticationService{
 
   public get currentUserValue(): User {
     return this.users[0];
+  }
+  public logout(): Observable<string> {
+    return asyncData('');
   }
 }
