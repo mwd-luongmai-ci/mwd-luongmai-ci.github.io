@@ -22,6 +22,9 @@ export class TestUserService extends UserService {
   forgotPassword(emailObject: { email: string, url: string }) : Observable<string> {
     return asyncData('');
   }
+  resetPassword(passwordObject: { password: string, resetToken: string }) : Observable<string> {
+    return asyncData('');
+  }
 
   search(keyword: string, method: string) : Observable<User[]> {
     let users = [] as User[];
