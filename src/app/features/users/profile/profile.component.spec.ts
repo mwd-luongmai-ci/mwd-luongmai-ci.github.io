@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthenticationService, UserService, AlertService } from '@app/core';
@@ -12,8 +12,6 @@ import { generateRandomString } from '@app/shared/testing/test-util';
 import { ProfileComponent } from './profile.component';
 import { NameComponent, BioComponent, CompanyComponent, LocationComponent, LoadingComponent } from '@app/shared/components';
 import { LoginComponent } from '@app/features/authentication/login/login.component';
-import { ValidationMessagesComponent } from '@app/shared/components/validation.messages/validation.messages.component';
-import { FormTextComponent } from '@app/shared/components/form-text/form-text.component';
 
 
 let component : ProfileComponent;
@@ -24,10 +22,9 @@ describe('ProfileComponent', () => {
   beforeEach(async(() => {
 
     TestBed.configureTestingModule({
-      declarations: [ ProfileComponent, NameComponent, BioComponent, CompanyComponent, LocationComponent, LoginComponent, LoadingComponent, ValidationMessagesComponent, FormTextComponent ],
+      declarations: [ ProfileComponent, NameComponent, BioComponent, CompanyComponent, LocationComponent, LoginComponent, LoadingComponent ],
       imports: [
         ReactiveFormsModule,
-        FormsModule,
         RouterModule.forRoot([]),
         HttpClientModule,
         RouterTestingModule.withRoutes([{ path: 'login', component: LoginComponent}])
