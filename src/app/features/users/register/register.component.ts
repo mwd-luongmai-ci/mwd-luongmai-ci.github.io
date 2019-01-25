@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { FieldSpecifications } from '@shared/specs';
 import { AlertService, AuthenticationService, UserService } from '@core/services';
+import { FieldSpecs } from '@app/shared/validation/field-spec';
 
 @Component({ templateUrl: 'register.component.html' })
 export class RegisterComponent implements OnInit {
@@ -27,10 +27,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      name: ['', FieldSpecifications.Name],
-      username: ['', FieldSpecifications.Username],
-      email: ['', FieldSpecifications.EmailAddress],
-      password: ['', FieldSpecifications.Password]
+      name: ['', [ FieldSpecs.nameValidator ]],
+      username: ['', [ FieldSpecs.usernameValidator ]],
+      email: ['', [ FieldSpecs.emailValidator ]],
+      password: ['', [ FieldSpecs.passwordValidator ]]
     });
   }
 

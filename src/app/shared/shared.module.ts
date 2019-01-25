@@ -8,7 +8,9 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { LocationComponent } from './components/location/location.component';
 import { NameComponent } from './components/name/name.component';
 import { PasswordComponent } from './components/password/password.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ValidationMessagesComponent } from './components/validation.messages/validation.messages.component';
+import { FormTextComponent } from './components/form-text/form-text.component';
 import { OldPasswordComponent } from '@app/shared/components/old-password/old-password.component';
 
 @NgModule({
@@ -21,11 +23,14 @@ import { OldPasswordComponent } from '@app/shared/components/old-password/old-pa
     LocationComponent,
     NameComponent,
     PasswordComponent,
+    ValidationMessagesComponent,
+    FormTextComponent,
     OldPasswordComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   exports: [
     AlertComponent,
@@ -36,6 +41,8 @@ import { OldPasswordComponent } from '@app/shared/components/old-password/old-pa
     LocationComponent,
     NameComponent,
     PasswordComponent,
+    ValidationMessagesComponent,
+    FormTextComponent,
     OldPasswordComponent,
   ]
 })
