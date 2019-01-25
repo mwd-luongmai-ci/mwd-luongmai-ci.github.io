@@ -1,8 +1,0 @@
-<div class="form-group">
-    <label><ng-content></ng-content></label>
-    <input [(ngModel)]="value"
-            [attr.type]="type"
-            class="form-control"
-            (blur)="onBlur()" [ngClass]="{ 'is-invalid': errorVisible && hasError }">
-    <validation-messages *ngIf="errorVisible && errors" [errors]="errors" class="invalid-feedback" [errorsDef]="errorsDef"></validation-messages>
-</div>

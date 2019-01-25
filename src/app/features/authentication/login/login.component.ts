@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '@core/services';
-import { FieldSpecs } from '@app/shared/validation/field-spec';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
@@ -28,8 +27,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', [FieldSpecs.usernameValidator]],
-      password: ['', [FieldSpecs.fieldRequiredValidator('passwordRequired')]]
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
 
     // get return url from route parameters or default to '/'
@@ -44,6 +43,7 @@ export class LoginComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
+      console.log(this.f.username.errors);
       return;
     }
 
@@ -51,17 +51,12 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
-        () => {
+        data => {
           this.router.navigate([this.returnUrl]);
         },
         error => {
           this.alertService.error(error);
           this.loading = false;
         });
-  }
-
-  onSave() {
-    this.submitted = true;
-    console.log(this.loginForm.value);
   }
 }
