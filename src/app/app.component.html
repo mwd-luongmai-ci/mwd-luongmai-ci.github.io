@@ -1,23 +1,19 @@
-﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
-        <a class="nav-item nav-link" routerLink="/users/profile">Profile</a>
-        <a class="nav-item nav-link" routerLink="/users/change-password">Change Password</a>
-        <a class="nav-item nav-link" routerLink="/users/profile/delete">Delete Account</a>
-        <a class="nav-item nav-link" routerLink="/users/search-user">Search User</a>
-    </div>
-</nav>
-
-<!-- main app container -->
+﻿<!-- main app container -->
 <div class="jumbotron">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <app-alert></app-alert>
-                <router-outlet></router-outlet>
-            </div>
-        </div>
+        <mat-toolbar color="primary" class='header'>
+            <div class='logo' routerLink="/">SWATANG</div>
+            <nav class='menu' *ngIf="currentUser">
+                <ul>
+                    <!-- <li><a mat-button routerLink="/users/search-user"><mat-icon><i class="material-icons md-dark" >search</i></mat-icon></a></li> -->
+                </ul>
+            </nav>
+            <div class="welcome" *ngIf="currentUser" >
+                <a mat-button routerLink="/users/search-user"><mat-icon><i class="material-icons md-dark" >search</i></mat-icon></a>
+                <a mat-button routerLink="/users/profile"><mat-icon><i class="material-icons md-dark" >account_circle</i></mat-icon>Hi <span class='name'>{{currentUser.name}}!</span></a>
+                <a mat-button (click)="logout()"><mat-icon><i class="material-icons md-dark" >exit_to_app</i></mat-icon>Logout</a></div>
+        </mat-toolbar>
+        <app-alert></app-alert>
+        <router-outlet></router-outlet>
     </div>
 </div>

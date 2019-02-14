@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-card {
+  margin: 10px;
+}
+
+mat-form-field { 
+  width: 100%;
+}
+
+mat-card-title {
+  text-transform: uppercase;
+  text-align: right;
+}
+
+mat-icon {
+  padding: 10px;
+}
+
+.header .logo {
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+.header .menu ul li {
+  font-size: 11pt;
+}
+
+.user-avatar {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1e/Default-avatar.jpg');
+  background-size: cover;
+}
+
+.welcome {
+  width: 100%;
+  text-align: right;
+  margin: 10px;
+}
+
+.success-snackbar {
+  color: white;
+  background: #2196F3;
+}
+
+.error-snackbar {
+  color: white;
+  background: #F44336;
+}
+
+.error-snackbar button{
+  color: black;
+}

@@ -1,18 +1,27 @@
-<h2>Delete Account</h2>
-<p>Hi <b>{{ currentUser.name }}</b>, you are requesting to delete your account.</p>
-<p>You have to confirm your password to continue the request.</p>
-<p>The request can not be undone.</p><br/>
 <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-      <label for="password">Confirm your password</label>
-      <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required.</div>
-        </div>
-  </div>
-  <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary">Delete my account</button>
-        <a routerLink="/" class="btn btn-link">Cancel</a>
-    </div>
+    <mat-card>
+        <mat-card-title>Delete Account</mat-card-title>
+        <mat-card-content>
+            <p>Hi <b>{{ currentUser.name }}</b>, you are requesting to delete your account.</p>
+            <p>You have to confirm your password to continue the request.</p>
+            <p>The request can not be undone.</p><br />
+            <mat-form-field>
+                <mat-icon matPrefix><i class="material-icons md-dark">lock</i></mat-icon>
+                <input matInput placeholder="{{label}}" type="password" formControlName="password" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <mat-error *ngIf="f.password.errors.required">Password is required.</mat-error>
+                </div>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button [disabled]="loading" color="primary">
+                <mat-icon><i class="material-icons md-dark">send</i></mat-icon>Send
+            </button>
+            <a mat-button routerLink="/" class="btn btn-link">
+                <mat-icon><i class="material-icons md-dark">cancel</i></mat-icon>Cancel
+            </a>
+        </mat-card-actions>
+    </mat-card>
 </form>
 <app-loading [visible]="loading"></app-loading>
