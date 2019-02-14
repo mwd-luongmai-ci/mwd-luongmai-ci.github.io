@@ -17,7 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     // core & shared
     CoreModule,
     SharedModule,
-    CustomMaterialModule
+    CustomMaterialModule,
   ],
   declarations: [
     AppComponent,

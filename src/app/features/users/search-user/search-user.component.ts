@@ -36,21 +36,6 @@ export class SearchUserComponent implements OnInit, AfterViewInit{
       keyword: ['', [Validators.required]],
       searchMethod: [SearchMethod.Name]
     });
-
-    this.userService.getAll()
-        .subscribe(
-          users => {
-            this.users = users;
-            this.dataSource.data = users;
-            this.dataSource.sort = this.sort;
-            this.isShowResult = true;
-            this.isNotFound = this.users.length === 0;
-          },
-          error => {
-            this.alertService.error(error);
-            this.submitted = false;
-            this.isShowResult = false;
-          });
   }
 
   get f() {
@@ -99,6 +84,20 @@ export class SearchUserComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit() {
+    // this.userService.getAll()
+    //     .subscribe(
+    //       users => {
+    //         this.users = users;
+    //         this.dataSource.data = users;
+    //         this.dataSource.sort = this.sort;
+    //         this.isShowResult = true;
+    //         this.isNotFound = this.users.length === 0;
+    //       },
+    //       error => {
+    //         this.alertService.error(error);
+    //         this.submitted = false;
+    //         this.isShowResult = false;
+    //       });
     this.dataSource.sort = this.sort;
   }
 }

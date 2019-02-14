@@ -3,15 +3,16 @@ import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthenticationService, UserService, AlertService } from '@app/core';
+import { AuthenticationService, UserService, AlertService, CustomMaterialModule } from '@app/core';
 import { TestAuthenticationService } from '@app/core/services/testing/test-authentication.service';
 import { TestUserService } from '@app/core/services/testing/test-user.service';
 import { getTestUsers } from '@app/core/models/testing/test-users';
 import { throwError } from 'rxjs';
 import { generateRandomString } from '@app/shared/testing/test-util';
 import { ProfileComponent } from './profile.component';
-import { NameComponent, BioComponent, CompanyComponent, LocationComponent, LoadingComponent } from '@app/shared/components';
 import { LoginComponent } from '@app/features/authentication/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { SharedModule } from '@app/shared';
 
 
 let component : ProfileComponent;
@@ -22,8 +23,11 @@ describe('ProfileComponent', () => {
   beforeEach(async(() => {
 
     TestBed.configureTestingModule({
-      declarations: [ ProfileComponent, NameComponent, BioComponent, CompanyComponent, LocationComponent, LoginComponent, LoadingComponent ],
+      declarations: [ ProfileComponent, LoginComponent ],
       imports: [
+        BrowserAnimationsModule,
+        SharedModule,
+        CustomMaterialModule,
         ReactiveFormsModule,
         RouterModule.forRoot([]),
         HttpClientModule,

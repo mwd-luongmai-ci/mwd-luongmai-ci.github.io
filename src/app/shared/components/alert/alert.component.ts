@@ -7,7 +7,6 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 @Component({
   selector: 'app-alert',
   templateUrl: 'alert.component.html',
-  styleUrls: ['alert.component.scss']
 })
 
 export class AlertComponent implements OnInit, OnDestroy {

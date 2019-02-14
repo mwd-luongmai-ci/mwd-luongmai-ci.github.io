@@ -1,6 +1,5 @@
 import { TestAuthenticationService } from './core/services/testing/test-authentication.service';
 import { AuthenticationService } from '@core/services';
-import { AlertComponent } from './shared/components/alert/alert.component';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -8,8 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { LoginComponent } from '@app/features/authentication/login/login.component';
-import { LoadingComponent } from '@app/shared/components';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared';
+import { CustomMaterialModule } from './core';
 
 
 describe('AppComponent', () => {
@@ -18,8 +19,11 @@ describe('AppComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent, AlertComponent, LoginComponent, LoadingComponent],
+      declarations: [ AppComponent, LoginComponent ],
       imports: [
+        BrowserAnimationsModule,
+        SharedModule,
+        CustomMaterialModule,
         ReactiveFormsModule,
         HttpClientModule,
         RouterModule.forRoot([]),
@@ -49,7 +53,7 @@ describe('AppComponent', () => {
 
     spyOn(component, 'logout');
 
-    const logoutURL = fixture.debugElement.query(By.css('.nav-item.nav-link:nth-child(2)'));
+    const logoutURL = fixture.debugElement.query(By.css('div.welcome a.mat-button:nth-child(3)'));
     logoutURL.triggerEventHandler('click', null)
 
     fixture.whenStable().then(() => {
