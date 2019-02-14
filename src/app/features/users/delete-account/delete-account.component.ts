@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '@core/models';
 import { AlertService, AuthenticationService, UserService } from '@core/services';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { FieldSpecifications } from '@app/shared';
 
 @Component({
   selector: 'app-delete-account',
@@ -32,7 +33,7 @@ export class DeleteAccountComponent implements OnInit, OnDestroy {
     });
 
     this.passwordForm = this.formBuilder.group({
-      password: ['', [Validators.required]]
+      password: ['', FieldSpecifications.Password]
     });
   }
 

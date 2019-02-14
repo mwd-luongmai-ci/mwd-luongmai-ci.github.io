@@ -1,13 +1,14 @@
-import { EmailComponent, LoadingComponent } from '@app/shared/components';
 import { ForgotPasswordComponent } from './forgot-password.component';
 import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { UserService, AlertService } from '@app/core';
+import { UserService, AlertService, CustomMaterialModule } from '@app/core';
 import { TestUserService } from '@app/core/services/testing/test-user.service';
 import { throwError } from 'rxjs';
 import { generateRandomString } from '@app/shared/testing/test-util';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from '@app/shared';
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
@@ -15,8 +16,11 @@ describe('ForgotPasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ForgotPasswordComponent, EmailComponent, LoadingComponent],
+      declarations: [ ForgotPasswordComponent ],
       imports: [
+        BrowserAnimationsModule,
+        SharedModule,
+        CustomMaterialModule,
         ReactiveFormsModule,
         RouterModule.forRoot([]),
         HttpClientModule

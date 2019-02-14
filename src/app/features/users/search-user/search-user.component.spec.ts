@@ -5,11 +5,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from '@app/features/authentication/login/login.component';
-import { AuthenticationService, UserService, AlertService } from '@app/core';
+import { AuthenticationService, UserService, CustomMaterialModule, AlertService } from '@app/core';
 import { TestAuthenticationService } from '@app/core/services/testing/test-authentication.service';
 import { TestUserService } from '@app/core/services/testing/test-user.service';
 import { SearchUserComponent } from './search-user.component';
 import { SharedModule, SearchMethod } from '@app/shared';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { getTestUsers } from '@app/core/models/testing/test-users';
 import { throwError } from 'rxjs';
 
@@ -24,7 +25,9 @@ describe('SearchUserComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SearchUserComponent, LoginComponent ],
       imports: [
+        BrowserAnimationsModule,
         SharedModule,
+        CustomMaterialModule,
         ReactiveFormsModule,
         RouterModule.forRoot([]),
         HttpClientModule,

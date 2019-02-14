@@ -9,13 +9,11 @@ import {
   MatToolbarModule,
   MatFormFieldModule,
   MatListModule,
-  MatListItem,
   MatSelectModule,
   MatPaginatorModule,
   MatSortModule,
   MatIconModule,
   MatGridListModule,
-  MatCardAvatar,
   MatAutocompleteModule,
   MatButtonToggleModule,
   MatCheckboxModule,
@@ -41,7 +39,6 @@ import {
   MatTabsModule,
   MatTooltipModule,
 } from '@angular/material';
-import { FormsModule } from '@angular/forms'
 
 @NgModule({
   imports: [

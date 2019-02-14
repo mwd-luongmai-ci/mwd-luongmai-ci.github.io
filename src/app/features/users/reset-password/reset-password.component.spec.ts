@@ -1,15 +1,16 @@
 import { ResetPasswordComponent } from './reset-password.component';
 import { LoginComponent } from '@app/features/authentication/login/login.component';
-import { PasswordComponent, LoadingComponent } from '@app/shared/components';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { UserService, AlertService } from '@app/core';
+import { UserService, AlertService, CustomMaterialModule } from '@app/core';
 import { TestUserService } from '@app/core/services/testing/test-user.service';
 import { throwError } from 'rxjs';
 import { generateRandomString } from '@app/shared/testing/test-util';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from '@app/shared';
 
 describe('ResetPasswordComponent', () => {
   let component: ResetPasswordComponent;
@@ -17,8 +18,11 @@ describe('ResetPasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResetPasswordComponent, PasswordComponent, LoginComponent, LoadingComponent],
+      declarations: [ ResetPasswordComponent, LoginComponent ],
       imports: [
+        BrowserAnimationsModule,
+        SharedModule,
+        CustomMaterialModule,
         ReactiveFormsModule,
         RouterModule.forRoot([]),
         HttpClientModule,
