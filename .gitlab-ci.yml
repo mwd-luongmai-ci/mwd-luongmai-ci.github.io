@@ -1,5 +1,5 @@
-image: trion/ng-cli-karma
-
+#image: trion/ng-cli-karma
+image: node:latest
 before_script:
   - npm install
 
