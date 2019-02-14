@@ -1,24 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Constants, SearchMethod } from '@shared/constants';
 import { User } from '@core/models';
 import { AlertService, UserService } from '@core/services';
 import { JsonConvert } from 'json2typescript';
+import { MatTableDataSource, MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-search-user',
   templateUrl: './search-user.component.html',
   styleUrls: ['./search-user.component.scss']
 })
-export class SearchUserComponent implements OnInit {
+export class SearchUserComponent implements OnInit, AfterViewInit{
   searchUserForm: FormGroup;
   submitted = false;
   jsonConvert: JsonConvert;
-  users: User[];
+  users: User[] = [];
   isNotFound = false;
   isShowResult = false;
   searchMethodSelected = SearchMethod.Name;
   maxLengthSearch = Constants.MAX_LENGTH_SEARCH;
+  displayedColumns = ['name', 'username', 'email', 'company', 'location', 'bio'];
+  dataSource = new MatTableDataSource<User>(this.users);
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,7 +36,21 @@ export class SearchUserComponent implements OnInit {
       keyword: ['', [Validators.required]],
       searchMethod: [SearchMethod.Name]
     });
-    this.users = [];
+
+    this.userService.getAll()
+        .subscribe(
+          users => {
+            this.users = users;
+            this.dataSource.data = users;
+            this.dataSource.sort = this.sort;
+            this.isShowResult = true;
+            this.isNotFound = this.users.length === 0;
+          },
+          error => {
+            this.alertService.error(error);
+            this.submitted = false;
+            this.isShowResult = false;
+          });
   }
 
   get f() {
@@ -54,6 +72,8 @@ export class SearchUserComponent implements OnInit {
         .subscribe(
           users => {
             this.users = users;
+            this.dataSource.data = users;
+            this.dataSource.sort = this.sort;
             this.isShowResult = true;
             this.isNotFound = this.users.length === 0;
           },
@@ -76,5 +96,9 @@ export class SearchUserComponent implements OnInit {
     searchKeyword = encodeURIComponent(searchKeyword);
 
     return searchKeyword;
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 }

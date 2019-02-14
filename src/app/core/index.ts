@@ -1,4 +1,5 @@
 export * from './core.module';
+export * from './material.module';
 export * from './config';
 export * from './guards';
 export * from './interceptors';

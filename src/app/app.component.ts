@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '@core/models';
 import { AuthenticationService } from '@core/services';
 
-@Component({ selector: 'app-swatang', templateUrl: 'app.component.html' })
+@Component({ selector: 'app-swatang', templateUrl: 'app.component.html', styleUrls: ['./app.component.scss'] })
 export class AppComponent {
   currentUser: User;
 

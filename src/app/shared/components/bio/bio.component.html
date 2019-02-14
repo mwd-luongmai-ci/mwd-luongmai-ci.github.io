@@ -1,8 +1,8 @@
-<div class="form-group" [formGroup]="parentGroup">
-  <label for="{{name}}">{{label}}</label>
-  <textarea rows="{{rows}}" formControlName="{{name}}" class="form-control" [ngClass]="{'is-invalid': submitted && parentGroup.get(name).errors}"></textarea>
-  <div *ngIf="submitted && parentGroup.get(name).errors" class="invalid-feedback">
-    <div *ngIf="parentGroup.get(name).errors.required">The bio is required.</div>
-    <div *ngIf="parentGroup.get(name).errors.maxlength">Maximum length of bio is 255 characters.</div>
+<mat-form-field [formGroup]="parentGroup">
+  <mat-icon matPrefix><i class="material-icons md-dark" >description</i></mat-icon>
+  <textarea matInput rows="{{rows}}" formControlName="{{name}}" [ngClass]="{'is-invalid': submitted && parentGroup.get(name).errors}" placeholder="{{label}}"></textarea>
+  <div *ngIf="submitted && parentGroup.get(name).errors">
+    <mat-error *ngIf="parentGroup.get(name).errors.required">The bio is required.</mat-error>
+    <mat-error *ngIf="parentGroup.get(name).errors.maxlength">Maximum length of bio is 255 characters.</mat-error>
   </div>
-</div>
+</mat-form-field>

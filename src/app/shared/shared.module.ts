@@ -10,6 +10,8 @@ import { NameComponent } from './components/name/name.component';
 import { PasswordComponent } from './components/password/password.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OldPasswordComponent } from '@app/shared/components/old-password/old-password.component';
+import { CustomMaterialModule } from '@app/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { OldPasswordComponent } from '@app/shared/components/old-password/old-pa
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    CustomMaterialModule,
+    FlexLayoutModule,
   ],
   exports: [
     AlertComponent,
@@ -37,6 +41,7 @@ import { OldPasswordComponent } from '@app/shared/components/old-password/old-pa
     NameComponent,
     PasswordComponent,
     OldPasswordComponent,
+    CustomMaterialModule,
   ]
 })
 export class SharedModule { }

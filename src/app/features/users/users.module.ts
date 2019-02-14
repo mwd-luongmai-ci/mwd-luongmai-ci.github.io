@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { UsersRoutingModule } from './users-routing.module';
@@ -11,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SearchUserComponent } from './search-user/search-user.component';
 import { SharedModule } from '@app/shared';
+import { CustomMaterialModule } from '@app/core';
 
 @NgModule({
   declarations: [
@@ -23,10 +23,10 @@ import { SharedModule } from '@app/shared';
     SearchUserComponent,
   ],
   imports: [
-    CommonModule,
     UsersRoutingModule,
     ReactiveFormsModule,
     SharedModule,
+    CustomMaterialModule,
   ]
 })
 export class UsersModule { }
