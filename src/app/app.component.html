@@ -11,8 +11,12 @@
             <div class="welcome" *ngIf="currentUser" >
                 <a mat-button routerLink="/users/search-user"><mat-icon><i class="material-icons md-dark" >search</i></mat-icon></a>
                 <a mat-button routerLink="/users/profile"><mat-icon><i class="material-icons md-dark" >account_circle</i></mat-icon>Hi <span class='name'>{{currentUser.name}}!</span></a>
-                <a mat-button (click)="logout()"><mat-icon><i class="material-icons md-dark" >exit_to_app</i></mat-icon>Logout</a></div>
+                <a mat-button (click)="logout()"><mat-icon><i class="material-icons md-dark" >exit_to_app</i></mat-icon>Logout</a>
+            </div>
         </mat-toolbar>
+        <div class="themes">
+            <app-change-theme (themeChange)="applyTheme($event)"></app-change-theme>
+        </div>
         <app-alert></app-alert>
         <router-outlet></router-outlet>
     </div>

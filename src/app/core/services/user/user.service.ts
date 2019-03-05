@@ -95,7 +95,7 @@ export class UserService {
   updateUserLocal(user: User) {
     const currentUser = this.authenticationService.currentUserValue as User;
     if (!!currentUser && !!user) {
-      const mappedUser = this.jsonConvert.deserialize(user, User);
+      const mappedUser = this.jsonConvert.deserialize(user, User) as User;
       currentUser.name = mappedUser.name !== undefined && mappedUser.name !== null ? mappedUser.name : currentUser.name;
       currentUser.bio = mappedUser.bio !== undefined && mappedUser.bio !== null ? mappedUser.bio : currentUser.bio;
       currentUser.company = mappedUser.company !== undefined && mappedUser.company !== null ? mappedUser.company : currentUser.company;

@@ -1,0 +1,4 @@
+
+<select [(ngModel)]="selectedTheme" (ngModelChange)="onSetTheme($event)">
+  <option *ngFor="let t of themes" [ngValue]="t"> {{t.name}} </option>
+</select>

@@ -15,6 +15,11 @@ Using Bootstrap to
 ## UI Styling
 Using standard CSS, Bootstrap CSS
 
+## Themes
+Applying custom Material themes, we able to change default theme in the application.
+Support tools for make a custom theme:
+  - https://material.io/design/color/#tools-for-picking-colors
+
 ## Functional Programming Language
 - TypeScript 3.1
 - JavaScript ES6/ES2015

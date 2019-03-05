@@ -6,6 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CustomMaterialModule } from '@app/core';
 import { InputComponent } from './components/input/input.component';
 import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
+import { ChangeThemeComponent } from './components/change-theme/change-theme.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ValidationMessagesComponent } from './components/validation-messages/va
     LoadingComponent,
     InputComponent,
     ValidationMessagesComponent,
+    ChangeThemeComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,7 @@ import { ValidationMessagesComponent } from './components/validation-messages/va
     CustomMaterialModule,
     InputComponent,
     ValidationMessagesComponent,
+    ChangeThemeComponent
   ]
 })
 export class SharedModule { }

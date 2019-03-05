@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+// @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -38,6 +38,10 @@ mat-icon {
   width: 100%;
   text-align: right;
   margin: 10px;
+}
+
+.themes {
+  text-align: right;
 }
 
 .success-snackbar {

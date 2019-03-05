@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from '@core/models';
@@ -10,13 +10,19 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
+  @HostBinding('class') componentCssClass;
+
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['auth/login']);
+  }
+
+  applyTheme($theme){
+    this.componentCssClass = $theme;
   }
 }
