@@ -7,6 +7,7 @@ import { CustomMaterialModule } from '@app/core';
 import { InputComponent } from './components/input/input.component';
 import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
 import { ChangeThemeComponent } from './components/change-theme/change-theme.component';
+import { ChangeLanguageComponent } from './components/change-language/change-language.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ChangeThemeComponent } from './components/change-theme/change-theme.com
     LoadingComponent,
     InputComponent,
     ValidationMessagesComponent,
-    ChangeThemeComponent
+    ChangeThemeComponent,
+    ChangeLanguageComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { ChangeThemeComponent } from './components/change-theme/change-theme.com
     CustomMaterialModule,
     InputComponent,
     ValidationMessagesComponent,
-    ChangeThemeComponent
+    ChangeThemeComponent,
+    ChangeLanguageComponent
   ]
 })
 export class SharedModule { }

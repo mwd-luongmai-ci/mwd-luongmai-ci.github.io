@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, TRANSLATIONS, TRANSLATIONS_FORMAT } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { User } from '@core/models';
@@ -24,5 +24,16 @@ export class AppComponent {
 
   applyTheme($theme){
     this.componentCssClass = $theme;
+  }
+
+  changeLang($lang) {
+    if ($lang === 'fr') {
+      localStorage.setItem('locale', 'fr');
+    } else if ($lang === 'ja') {
+      localStorage.setItem('locale', 'ja');
+    } else {
+      localStorage.setItem('locale', 'en');
+    }
+    location.reload(true);
   }
 }

@@ -2,7 +2,7 @@
 <div class="jumbotron">
     <div class="container">
         <mat-toolbar color="primary" class='header'>
-            <div class='logo' routerLink="/">SWATANG</div>
+            <div class='logo' routerLink="/"><ng-container i18n="logo text">SWATANG</ng-container></div>
             <nav class='menu' *ngIf="currentUser">
                 <ul>
                     <!-- <li><a mat-button routerLink="/users/search-user"><mat-icon><i class="material-icons md-dark" >search</i></mat-icon></a></li> -->
@@ -10,12 +10,13 @@
             </nav>
             <div class="welcome" *ngIf="currentUser" >
                 <a mat-button routerLink="/users/search-user"><mat-icon><i class="material-icons md-dark" >search</i></mat-icon></a>
-                <a mat-button routerLink="/users/profile"><mat-icon><i class="material-icons md-dark" >account_circle</i></mat-icon>Hi <span class='name'>{{currentUser.name}}!</span></a>
-                <a mat-button (click)="logout()"><mat-icon><i class="material-icons md-dark" >exit_to_app</i></mat-icon>Logout</a>
+                <a mat-button routerLink="/users/profile"><mat-icon><i class="material-icons md-dark" >account_circle</i></mat-icon><ng-container i18n="header welcome">Hi </ng-container><span class='name'>{{currentUser.name}}!</span></a>
+                <a mat-button (click)="logout()"><mat-icon><i class="material-icons md-dark" >exit_to_app</i></mat-icon><ng-container i18n="header logout link">Logout</ng-container></a>
             </div>
         </mat-toolbar>
         <div class="themes">
             <app-change-theme (themeChange)="applyTheme($event)"></app-change-theme>
+            <app-change-language (changeLanguage)="changeLang($event)"></app-change-language>
         </div>
         <app-alert></app-alert>
         <router-outlet></router-outlet>

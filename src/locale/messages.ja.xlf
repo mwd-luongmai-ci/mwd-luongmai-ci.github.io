@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="d6e9bc5f947c87cb5bc0885b424030858939bd8c" datatype="html">
+        <source>SWATANG</source>
+        <target>[JA]SWATANG</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <note priority="1" from="description">logo text</note>
+      </trans-unit>
+      <trans-unit id="817d00f562390a2189ef2dbde70ed361c2693541" datatype="html">
+        <source>Hi </source>
+        <target>[JA]Hi </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <note priority="1" from="description">header welcome</note>
+      </trans-unit>
+      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
+        <source>Logout</source>
+        <target>[JA]Logout</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="description">header logout link</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

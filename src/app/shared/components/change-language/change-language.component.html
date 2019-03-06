@@ -1,0 +1,5 @@
+<div *ngFor="let lang of languages">
+  <span *ngIf="lang.code !== localeId">
+    <a (click)="onSetLanguage(lang.code)">{{lang.label}}</a> </span>
+  <span *ngIf="lang.code === localeId">{{lang.label}} </span>
+</div>
