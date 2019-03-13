@@ -1,60 +1,76 @@
-# SWATANG OVERVIEW
+# MENU
+- [MENU](#menu)
+- [SWATANG OVERVIEW](#swatang-overview)
+  - [Technology](#technology)
+  - [Framework Structure](#framework-structure)
+- [GET STARTED](#get-started)
+  - [Understand requirements](#understand-requirements)
+  - [Go forward with your branch](#go-forward-with-your-branch)
+  - [Build and run SWATANG app](#build-and-run-swatang-app)
+  - [SWATANG app configuration](#swatang-app-configuration)
+  - [Create new component for your feature](#create-new-component-for-your-feature)
+  - [Give your component a route to access via browser](#give-your-component-a-route-to-access-via-browser)
+  - [Unit testing for your component](#unit-testing-for-your-component)
+  - [Coding Style Checking](#coding-style-checking)
+  - [Make a Merge request](#make-a-merge-request)
 
-## Development Environment
+# SWATANG OVERVIEW
+## Technology
+1. Development Environment
 - Node.js as an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser.  
 - NPM to manage packages.
 - Angular CLI for create projects, generate application and library code, and perform a variety of ongoing development tasks such as testing, bundling, and deployment.
 - Angular is a platform and framework for building client applications in HTML and TypeScript.
 - TypeScript language to implement optional functionality in Angular Framework.
 
-## UI Layout / Components
+2. UI Layout / Components
 Using Bootstrap to
   develop responsive layout, mobile-first web sites
   develop interface elements with Bootstrap components
 
-## UI Styling
+3. UI Styling
 Using standard CSS, Bootstrap CSS
 
-## Themes
+4. Themes
 Applying custom Material themes, we able to change default theme in the application.
 Support tools for make a custom theme:
   - https://material.io/design/color/#tools-for-picking-colors
 
-## Functional Programming Language
+5. Functional Programming Language
 - TypeScript 3.1
 - JavaScript ES6/ES2015
 
-## Authentication
+6. Authentication
 - Using JWT Token (based on Back-End)
 
-## Authorization
+7. Authorization
 - Using Guards to protect routes to limit pages which user are able to access or not.
 
-## Asynchronous Handling
+8. Asynchronous Handling
 - Using Observables to handle asynchronous operations
 - Support Reactive Programming using observables with RxJS Library
 
-## Communicate with BackEnd service 
+9. Communicate with BackEnd service 
 - Using HttpClient from `@angular/common/http`
 
-## Error Request Handling
+10. Error Request Handling
 - Using a Intercepter class which implemented from `HttpInterceptor` to catch HTTP errors
 
-## Unit Testing
+11. Unit Testing
 - Using Karma & Jamine
 - Implement Unit Test in *.spec.ts files and run them with command line `ng test`
 - Generate HTML, Console reports
 - Generate Code Converage report
 
-## End To End Testing
+12. End To End Testing
 - Using Protractor & Cucumber framework
 - Support BDD
 - Generate HTML report
 
-## Code Checking
+13. Code Checking
 - Using TSLint to check TypeScript code with defined rules in `tslint.json`
 
-## Coding Optimization
+14. Coding Optimization
 - Implement individual services, components.
 - Builing common components for reuse source code
 - Using `<outlet>` to optimize HTML layout
