@@ -3,7 +3,7 @@ import { ValidationErrors } from "@angular/forms";
 
 @Injectable({ providedIn: 'root' })
 export class ValidationService {
-  private config = {
+  private fieldValidationMessages = {
     usernameMinLength: 'Minimum length of username must be 6 characters.',
     usernameRequired: 'Username is required.',
     usernamePattern: 'Username must contain only alphabetic characters.',
@@ -30,7 +30,7 @@ export class ValidationService {
     if (errorsDef && errorsDef[validatorName]) {
       return errorsDef[validatorName];
     } else {
-      return this.config[validatorName] ? this.config[validatorName] : validatorName;
+      return this.fieldValidationMessages[validatorName] ? this.fieldValidationMessages[validatorName] : validatorName;
     }
   }
 

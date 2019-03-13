@@ -21,8 +21,6 @@ declare const require;
 // tslint:disable-next-line:no-var-requires
 const translations = require(`raw-loader!./locale/messages.${locale}.xlf`);
 
-console.log(translations);
-
 platformBrowserDynamic().bootstrapModule(AppModule, {
   missingTranslation: MissingTranslationStrategy.Warning,
   providers: [
