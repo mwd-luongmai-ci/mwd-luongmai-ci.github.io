@@ -10,8 +10,6 @@
     "e2e": "ng e2e",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "lint:fix": "ng lint --fix",
-    "preinstall": "npm install -g angular-cli",
-    "postinstall": "ng build && mv dist/* ."
   },
   "private": true,
   "dependencies": {
