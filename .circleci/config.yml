@@ -63,7 +63,7 @@ jobs:
             - run: git config user.email "mwd-luong.mai@mowede.com"
             - run: git add .
             - run: git commit -m "Deploy swatang app"
-            - run: git push --force --quiet "https://f3429b17299461de1e5c8339d83c245b44a58e83@github.com/mwd-luongmai/mwd-luongmai.github.io.git" master # path to your repo on GitHub, using token for authentication
+            - run: git push --force --quiet "git@github.com:mwd-luongmai/mwd-luongmai.github.io.git" master # path to your repo on GitHub, using token for authentication
     # # Deploy job
     # deploy:
     #     machine:
