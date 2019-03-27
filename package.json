@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "lint:fix": "ng lint --fix",
+    "lint:fix": "ng lint --fix"
   },
   "private": true,
   "dependencies": {
