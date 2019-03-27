@@ -59,6 +59,8 @@ jobs:
                     - dist
     # Deploy job
     deploy:
+        machine:
+            enabled: true
         working_directory: ~/fe_angular
         steps:
             - run: cd dist
