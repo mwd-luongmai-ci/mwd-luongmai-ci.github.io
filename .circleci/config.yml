@@ -57,19 +57,26 @@ jobs:
                 key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
                 paths:
                     - dist
-    # Deploy job
-    deploy:
-        machine:
-            enabled: true
-        working_directory: ~/fe_angular
-        steps:
             - run: cd dist
             - run: git init
             - run: git config user.name "Luong Mai"
             - run: git config user.email "mwd-luong.mai@mowede.com"
             - run: git add .
             - run: git commit -m "Deploy swatang app"
-            - run: git push --force --quiet "https://4af4579973b59d1c2ed693da1ab4ab46016fab4a@github.com/mwd-luongmai/mwd-luongmai.github.io.git" master # path to your repo on GitHub, using token for authentication
+            - run: git push --force --quiet "https://f3429b17299461de1e5c8339d83c245b44a58e83@github.com/mwd-luongmai/mwd-luongmai.github.io.git" master # path to your repo on GitHub, using token for authentication
+    # # Deploy job
+    # deploy:
+    #     machine:
+    #         enabled: true
+    #     working_directory: ~/fe_angular
+    #     steps:
+    #         - run: cd dist
+    #         - run: git init
+    #         - run: git config user.name "Luong Mai"
+    #         - run: git config user.email "mwd-luong.mai@mowede.com"
+    #         - run: git add .
+    #         - run: git commit -m "Deploy swatang app"
+    #         - run: git push --force --quiet "https://f3429b17299461de1e5c8339d83c245b44a58e83@github.com/mwd-luongmai/mwd-luongmai.github.io.git" master # path to your repo on GitHub, using token for authentication
 workflows:
     version: 2
     build-test-and-approval-deploy:
@@ -81,6 +88,6 @@ workflows:
                 - build
             # On approval of the `hold` job, any successive job that requires the `hold` job will run. 
             # In this case, a user is manually triggering the deploy job.
-            - deploy:
-                requires:
-                    - hold
+            # - deploy:
+            #     requires:
+            #         - hold
