@@ -1,10 +1,13 @@
-version: 2
+version: 2.1
+executors:
+  my-executor:
+    docker:
+      - image: circleci/node:8.9.4-browsers
+    working_directory: ~/fe_angular
 jobs:
     # The build job
     build:
-        working_directory: ~/fe_angular
-        docker:
-            - image: circleci/node:8.9.4-browsers
+        executor: my-executor
         steps:
             - add_ssh_keys:
                 fingerprints:
@@ -59,30 +62,35 @@ jobs:
                 key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
                 paths:
                     - dist
+             # Persist the specified paths into the workspace for use in downstream job. 
+            - persist_to_workspace:
+                # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is 
+                # taken to be the root directory of the workspace.
+                root: .
+                # Must be relative path from root
+                paths:
+                    - dist
+                    - package.json
+                    - angular.json
+                    - package-lock.json
     # The build job
     deploy-stage:
-        working_directory: ~/fe_angular
-        docker:
-            - image: circleci/node:8.9.4-browsers
+        executor: my-executor
         steps:
-            - restore_cache:
-                keys:
-                - v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-                - v1-dist-
+            - attach_workspace:
+                # Must be absolute path or relative path from working_directory
+                at: ~/fe_angular
             # Deploy to GitPage
             - run: git init
             - run: git config user.name "Luong Mai"
             - run: git config user.email "luong.mai@mowede.com"
             - run: yarn run deploy
     deploy-prod:
-        working_directory: ~/fe_angular
-        docker:
-            - image: circleci/node:8.9.4-browsers
+        executor: my-executor
         steps:
-            - restore_cache:
-                keys:
-                - v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-                - v1-dist-
+            - attach_workspace:
+                # Must be absolute path or relative path from working_directory
+                at: ~/fe_angular
             # Deploy to GitPage
             - run: git init
             - run: git config user.name "Luong Mai"
