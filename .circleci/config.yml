@@ -65,6 +65,10 @@ jobs:
         docker:
             - image: circleci/node:8.9.4-browsers
         steps:
+            - restore_cache:
+                keys:
+                - v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+                - v1-dist-
             # Deploy to GitPage
             - run: git init
             - run: git config user.name "Luong Mai"
@@ -75,6 +79,10 @@ jobs:
         docker:
             - image: circleci/node:8.9.4-browsers
         steps:
+            - restore_cache:
+                keys:
+                - v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+                - v1-dist-
             # Deploy to GitPage
             - run: git init
             - run: git config user.name "Luong Mai"
