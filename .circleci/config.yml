@@ -47,6 +47,8 @@ jobs:
                 command: |
                     if [ "${CIRCLE_BRANCH}" == "develop" ]; then
                         yarn build
+                    elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
+                        yarn build
                     elif [ "${CIRCLE_BRANCH}" == "master" ]; then
                         yarn build
                     else
@@ -57,37 +59,50 @@ jobs:
                 key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
                 paths:
                     - dist
+    # The build job
+    deploy-stage:
+        working_directory: ~/fe_angular
+        docker:
+            - image: circleci/node:8.9.4-browsers
+            # Deploy to GitPage
             - run: git init
             - run: git config user.name "Luong Mai"
             - run: git config user.email "luong.mai@mowede.com"
             - run: yarn run deploy
-            # - run: git add .
-            # - run: git commit -m "Deploy swatang app"
-            # - run: git push --force --quiet "git@github.com:mwd-luongmai/swatang.git" # path to your repo on GitHub, using token for authentication
-    # # Deploy job
-    # deploy:
-    #     machine:
-    #         enabled: true
-    #     working_directory: ~/fe_angular
-    #     steps:
-    #         - run: cd dist
-    #         - run: git init
-    #         - run: git config user.name "Luong Mai"
-    #         - run: git config user.email "mwd-luong.mai@mowede.com"
-    #         - run: git add .
-    #         - run: git commit -m "Deploy swatang app"
-    #         - run: git push --force --quiet "https://f3429b17299461de1e5c8339d83c245b44a58e83@github.com/mwd-luongmai/mwd-luongmai.github.io.git" master # path to your repo on GitHub, using token for authentication
+    deploy-prod:
+        working_directory: ~/fe_angular
+        docker:
+            - image: circleci/node:8.9.4-browsers
+            # Deploy to GitPage
+            - run: git init
+            - run: git config user.name "Luong Mai"
+            - run: git config user.email "luong.mai@mowede.com"
+            - run: yarn run deploy
 workflows:
     version: 2
     build-test-and-approval-deploy:
         jobs:
             - build
+                filters:
+                    branches:
+                        ignore:
+                            - gh-pages
+                            - /feature-.*/
             - hold: # <<< A job that will require manual approval in the CircleCI web application.
                 type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
                 requires: # We only run the "hold" job when test2 has succeeded
                 - build
             # On approval of the `hold` job, any successive job that requires the `hold` job will run. 
             # In this case, a user is manually triggering the deploy job.
-            # - deploy:
-            #     requires:
-            #         - hold
+            - deploy-stage:
+                requires:
+                    - hold
+                filters:
+                    branches:
+                        only: staging
+            - deploy-prod:
+                requires:
+                    - hold
+                filters:
+                    branches:
+                        only: master
