@@ -88,7 +88,7 @@ jobs:
             - run: git init
             - run: git config user.name "Luong Mai"
             - run: git config user.email "luong.mai@mowede.com"
-            - run: git remote add origin git@github.com:mwd-luongmai/swatang.git
+            - run: git remote add origin https://github.com/mwd-luongmai/swatang.git
             - run: yarn run deploy
     deploy-prod:
         executor: my-executor
@@ -107,7 +107,7 @@ jobs:
             - run: git init
             - run: git config user.name "Luong Mai"
             - run: git config user.email "luong.mai@mowede.com"
-            - run: git remote add origin git@github.com:mwd-luongmai/swatang.git
+            - run: git remote add origin https://github.com/mwd-luongmai/swatang.git
             - run: yarn run deploy
 workflows:
     version: 2
