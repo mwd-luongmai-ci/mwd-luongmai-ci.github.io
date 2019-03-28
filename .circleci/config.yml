@@ -8,7 +8,7 @@ jobs:
         steps:
             - add_ssh_keys:
                 fingerprints:
-                    - "90:e2:7c:bf:33:52:34:9b:ce:dd:10:e5:1a:85:c5:2e"
+                    - "e0:f6:b0:34:78:9a:24:1e:af:17:fd:1b:77:44:85:c7"
             # Checkout the code from the branch into the working_directory
             - checkout
             # Log the current branch
