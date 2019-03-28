@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "deploy": "gh-pages -d dist/swatang",
+    "deploy": "ng build --prod --output-path docs --base-href /swatang/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

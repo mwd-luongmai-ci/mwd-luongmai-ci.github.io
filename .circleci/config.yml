@@ -43,24 +43,24 @@ jobs:
             # Build project with different configuration based on
             # the current branch
             - run:
-                name: Building
+                name: Building and Deploying to GitPage
                 command: |
                     if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-                        yarn build
+                        yarn deploy
                     elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                        yarn build
+                        yarn deploy
                     else
-                        yarn build
+                        yarn deploy
                     fi
             # Cache the dist folder for the deploy job
             - save_cache:
                 key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
                 paths:
                     - dist
-            - run: git init
-            - run: git config user.name "Luong Mai"
-            - run: git config user.email "luong.mai@mowede.com"
-            - run: yarn run deploy
+            # - run: git init
+            # - run: git config user.name "Luong Mai"
+            # - run: git config user.email "luong.mai@mowede.com"
+            # - run: yarn run deploy
             # - run: git fetch
             # - run: git checkout gh-pages
             # - run: git add .
