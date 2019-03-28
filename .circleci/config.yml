@@ -8,7 +8,7 @@ jobs:
         steps:
             - add_ssh_keys:
                 fingerprints:
-                    - "f1:25:ca:79:7a:4b:90:4e:d4:91:31:48:dd:e6:89:91"
+                    - "16:3c:b0:c8:6a:13:a3:30:ed:a0:9c:74:77:9d:b5:4d"
             # Checkout the code from the branch into the working_directory
             - checkout
             # Log the current branch
@@ -63,7 +63,7 @@ jobs:
             - run: git config user.email "mwd-luong.mai@mowede.com"
             - run: git add .
             - run: git commit -m "Deploy swatang app"
-            - run: git push --force --quiet "git@github.com:mwd-luongmai/mwd-luongmai.github.io.git" master # path to your repo on GitHub, using token for authentication
+            - run: git push --force --quiet "https://github.com/mwd-luongmai/swatang.git" gh-pages # path to your repo on GitHub, using token for authentication
     # # Deploy job
     # deploy:
     #     machine:
