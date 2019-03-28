@@ -46,11 +46,11 @@ jobs:
                 name: Building and Deploying to GitPage
                 command: |
                     if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-                        yarn deploy
+                        yarn build
                     elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                        yarn deploy
+                        yarn build
                     else
-                        yarn deploy
+                        yarn build
                     fi
             # Cache the dist folder for the deploy job
             - save_cache:
