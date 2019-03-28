@@ -89,9 +89,9 @@ jobs:
                 command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
             # Deploy to GitPage
             - run: git init
-            - run: git config user.name "Luong Mai"
-            - run: git config user.email "luong.mai@mowede.com"
-            - run: git remote add origin git@github.com:mwd-luongmai/swatang.git
+            - run: git config user.name $GH_NAME
+            - run: git config user.email $GH_EMAIL
+            - run: git remote add origin $GH_REPO
             - run: yarn run deploy
     deploy-prod:
         executor: my-executor
@@ -111,9 +111,9 @@ jobs:
                 command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
             # Deploy to GitPage
             - run: git init
-            - run: git config user.name "Luong Mai"
-            - run: git config user.email "luong.mai@mowede.com"
-            - run: git remote add origin git@github.com:mwd-luongmai/swatang.git
+            - run: git config user.name $GH_NAME
+            - run: git config user.email $GH_EMAIL
+            - run: git remote add origin $GH_REPO
             - run: yarn run deploy
 workflows:
     version: 2
