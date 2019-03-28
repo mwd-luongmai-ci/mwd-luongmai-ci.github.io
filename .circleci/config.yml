@@ -9,9 +9,6 @@ jobs:
     build:
         executor: my-executor
         steps:
-            - add_ssh_keys:
-                fingerprints:
-                    - "e0:f6:b0:34:78:9a:24:1e:af:17:fd:1b:77:44:85:c7"
             # Checkout the code from the branch into the working_directory
             - checkout
             # Log the current branch
@@ -84,10 +81,14 @@ jobs:
                 keys:
                 - v1-dependencies-{{ checksum "package.json" }}
                 - v1-dependencies-
+            - add_ssh_keys:
+                fingerprints:
+                    - "e0:f6:b0:34:78:9a:24:1e:af:17:fd:1b:77:44:85:c7"
             # Deploy to GitPage
             - run: git init
             - run: git config user.name "Luong Mai"
             - run: git config user.email "luong.mai@mowede.com"
+            - run: git remote add origin git@github.com:mwd-luongmai/swatang.git
             - run: yarn run deploy
     deploy-prod:
         executor: my-executor
@@ -99,10 +100,14 @@ jobs:
                 keys:
                 - v1-dependencies-{{ checksum "package.json" }}
                 - v1-dependencies-
+            - add_ssh_keys:
+                fingerprints:
+                    - "e0:f6:b0:34:78:9a:24:1e:af:17:fd:1b:77:44:85:c7"
             # Deploy to GitPage
             - run: git init
             - run: git config user.name "Luong Mai"
             - run: git config user.email "luong.mai@mowede.com"
+            - run: git remote add origin git@github.com:mwd-luongmai/swatang.git
             - run: yarn run deploy
 workflows:
     version: 2
