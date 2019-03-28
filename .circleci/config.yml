@@ -57,15 +57,15 @@ jobs:
                 key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
                 paths:
                     - dist
-            - run: cd dist
-            - run: git init
-            - run: git config user.name "Luong Mai"
-            - run: git config user.email "mwd-luong.mai@mowede.com"
-            - run: git fetch
-            - run: git checkout gh-pages
-            - run: git add .
-            - run: git commit -m "Deploy swatang app"
-            - run: git push --force --quiet "git@github.com:mwd-luongmai/swatang.git" # path to your repo on GitHub, using token for authentication
+            - run: yarn run deploy
+            # - run: git init
+            # - run: git config user.name "Luong Mai"
+            # - run: git config user.email "mwd-luong.mai@mowede.com"
+            # - run: git fetch
+            # - run: git checkout gh-pages
+            # - run: git add .
+            # - run: git commit -m "Deploy swatang app"
+            # - run: git push --force --quiet "git@github.com:mwd-luongmai/swatang.git" # path to your repo on GitHub, using token for authentication
     # # Deploy job
     # deploy:
     #     machine:
