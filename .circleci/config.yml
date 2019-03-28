@@ -80,6 +80,10 @@ jobs:
             - attach_workspace:
                 # Must be absolute path or relative path from working_directory
                 at: ~/fe_angular
+            - restore_cache:
+                keys:
+                - v1-dependencies-{{ checksum "package.json" }}
+                - v1-dependencies-
             # Deploy to GitPage
             - run: git init
             - run: git config user.name "Luong Mai"
@@ -91,6 +95,10 @@ jobs:
             - attach_workspace:
                 # Must be absolute path or relative path from working_directory
                 at: ~/fe_angular
+            - restore_cache:
+                keys:
+                - v1-dependencies-{{ checksum "package.json" }}
+                - v1-dependencies-
             # Deploy to GitPage
             - run: git init
             - run: git config user.name "Luong Mai"
